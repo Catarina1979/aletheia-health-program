@@ -2408,230 +2408,67 @@
   }
 
   /* ==================== */
-  /* LAMP HERO (21st.dev · Dr. Cole adapted)  */
+  /* SPIRAL HERO          */
   /* ==================== */
-  .lamp-hero {
+  .spiral-hero {
     position: relative;
-    min-height: 100vh;
     width: 100%;
-    background: #3e4b45;
+    height: 100vh;
+    background: #000;
     overflow: hidden;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 0;
   }
-  .lamp-stage {
-    position: relative;
-    width: 100%;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: scaleY(1.25);
-    isolation: isolate;
-    z-index: 0;
-  }
-  .lamp-cone {
-    position: absolute;
-    inset: auto;
-    height: 14rem;
-    width: 15rem;
-    top: 50%;
-    opacity: 0.5;
-    overflow: visible;
-    color: #fff;
-    transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-                opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: 0.3s;
-  }
-  .lamp-cone--left {
-    right: 50%;
-    background-image: conic-gradient(from 70deg at center top,
-      #c6a573 0deg,
-      transparent 60deg,
-      transparent 360deg);
-  }
-  .lamp-cone--right {
-    left: 50%;
-    background-image: conic-gradient(from 290deg at center top,
-      transparent 0deg,
-      transparent 300deg,
-      #c6a573 360deg);
-  }
-  .lamp-hero.lamp-active .lamp-cone {
-    opacity: 1;
-    width: 30rem;
-  }
-  /* Left cone masks */
-  .lamp-cone--left::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    left: 0;
-    bottom: 0;
-    background: #3e4b45;
-    height: 10rem;
-    z-index: 20;
-    -webkit-mask-image: linear-gradient(to top, white, transparent);
-            mask-image: linear-gradient(to top, white, transparent);
-  }
-  .lamp-cone--left::after {
-    content: "";
-    position: absolute;
-    width: 10rem;
-    height: 100%;
-    left: 0;
-    bottom: 0;
-    background: #3e4b45;
-    z-index: 20;
-    -webkit-mask-image: linear-gradient(to right, white, transparent);
-            mask-image: linear-gradient(to right, white, transparent);
-  }
-  /* Right cone masks */
-  .lamp-cone--right::before {
-    content: "";
-    position: absolute;
-    width: 10rem;
-    height: 100%;
-    right: 0;
-    bottom: 0;
-    background: #3e4b45;
-    z-index: 20;
-    -webkit-mask-image: linear-gradient(to left, white, transparent);
-            mask-image: linear-gradient(to left, white, transparent);
-  }
-  .lamp-cone--right::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    right: 0;
-    bottom: 0;
-    background: #3e4b45;
-    height: 10rem;
-    z-index: 20;
-    -webkit-mask-image: linear-gradient(to top, white, transparent);
-            mask-image: linear-gradient(to top, white, transparent);
-  }
-
-  /* Blur + glow layers */
-  .lamp-blur-bottom {
-    position: absolute;
-    top: 50%;
-    height: 12rem;
-    width: 100%;
-    transform: translateY(3rem) scaleX(1.5);
-    background: #3e4b45;
-    filter: blur(40px);
-    z-index: 0;
-  }
-  .lamp-frost {
-    position: absolute;
-    top: 50%;
-    height: 12rem;
-    width: 100%;
-    opacity: 0.1;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    z-index: 50;
-  }
-  .lamp-glow {
-    position: absolute;
-    inset: auto;
-    z-index: 50;
-    height: 9rem;
-    width: 28rem;
-    top: 50%;
-    transform: translateY(-50%);
-    border-radius: 9999px;
-    background: #c6a573;
-    opacity: 0.45;
-    filter: blur(60px);
-  }
-  .lamp-core {
-    position: absolute;
-    inset: auto;
-    z-index: 30;
-    height: 9rem;
-    width: 8rem;
-    top: 50%;
-    transform: translateY(-6rem);
-    border-radius: 9999px;
-    background: #d5be99;
-    filter: blur(40px);
-    transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: 0.3s;
-  }
-  .lamp-hero.lamp-active .lamp-core { width: 16rem; }
-
-  .lamp-line { display: none; }
-
-  /* Floating light particles — rise from beneath the lamp, drift up */
-  .lamp-particles {
+  #spiral-canvas {
     position: absolute;
     inset: 0;
-    top: 30%;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 45;
-  }
-  .lamp-particle {
-    position: absolute;
-    bottom: -20px;
-    width: 3px; height: 3px;
-    border-radius: 50%;
-    background: var(--gold-soft);
-    box-shadow: 0 0 8px rgba(213, 190, 153, 0.6);
-    opacity: 0;
-    animation: particle-rise var(--dur, 12s) linear var(--delay, 0s) infinite;
-    will-change: transform, opacity;
-  }
-  .lamp-particle--sm { width: 2px; height: 2px; opacity: 0; box-shadow: 0 0 4px rgba(213, 190, 153, 0.45); }
-  .lamp-particle--lg { width: 4px; height: 4px; box-shadow: 0 0 14px rgba(213, 190, 153, 0.75); }
-  @keyframes particle-rise {
-    0% {
-      transform: translate(0, 0);
-      opacity: 0;
-    }
-    10% { opacity: 0.7; }
-    50% {
-      transform: translate(var(--drift, 20px), -50vh);
-      opacity: 0.9;
-    }
-    90% { opacity: 0.35; }
-    100% {
-      transform: translate(calc(var(--drift, 20px) * 1.4), -100vh);
-      opacity: 0;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .lamp-particle { animation: none !important; opacity: 0.3; }
-  }
-
-  .lamp-cover-top {
-    position: absolute;
-    inset: auto;
-    z-index: 40;
-    height: 11rem;
     width: 100%;
-    top: 50%;
-    transform: translateY(-12.5rem);
-    background: #3e4b45;
+    height: 100%;
   }
 
-  /* Content above lamp */
-  .lamp-content {
+  /* Hero overlay content */
+  .hero-overlay {
     position: relative;
-    z-index: 50;
-    transform: translateY(-6rem);
+    z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 24px;
     text-align: center;
     gap: 20px;
+    padding: 0 24px;
+    pointer-events: none;
+  }
+  .hero-overlay .hero-cta-btn {
+    pointer-events: auto;
+  }
+
+  /* Hero CTA button */
+  .hero-cta-btn {
+    display: inline-block;
+    margin-top: 32px;
+    padding: 16px 48px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #1a1a18;
+    background: #c6a573;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: lamp-fade-up 0.9s cubic-bezier(0.22,1,0.36,1) 2.5s forwards;
+    transition: background 0.25s ease, letter-spacing 0.25s ease, transform 0.2s ease;
+    text-decoration: none;
+  }
+  .hero-cta-btn:hover {
+    background: #d5be99;
+    letter-spacing: 0.42em;
+    transform: translateY(-2px);
+    color: #1a1a18;
   }
 
   /* Logo α */
@@ -2690,28 +2527,7 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Mobile adjustments */
-  @media (max-width: 900px) {
-    .lamp-hero.lamp-active .lamp-cone { width: 22rem; }
-    .lamp-hero.lamp-active .lamp-line { width: 22rem; }
-    .lamp-hero.lamp-active .lamp-core { width: 12rem; }
-    .lamp-glow { width: 20rem; }
-    .lamp-content { transform: translateY(-5rem); }
-  }
-  @media (max-width: 600px) {
-    .lamp-hero.lamp-active .lamp-cone { width: 16rem; }
-    .lamp-hero.lamp-active .lamp-line { width: 16rem; }
-    .lamp-hero.lamp-active .lamp-core { width: 8rem; }
-    .lamp-glow { width: 14rem; height: 6rem; }
-    .lamp-content { transform: translateY(-4rem); }
-    .lamp-headline { font-size: 42px; }
-  }
   @media (prefers-reduced-motion: reduce) {
-    .lamp-hero .lamp-cone,
-    .lamp-hero .lamp-core,
-    .lamp-hero .lamp-line {
-      transition: none;
-    }
     .hero-mark, .hero-title__aletheia, .hero-title__sub {
       animation: none;
       opacity: 1;
@@ -2719,6 +2535,7 @@
     }
   }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 <body>
 
@@ -2800,26 +2617,16 @@
   <a href="#cta" class="nav-drawer__cta drawer-link">Candidatar ao programa</a>
 </div>
 
-<!-- ============ HERO · Lamp ============ -->
-<section class="lamp-hero" id="hero-lamp">
-  <div class="lamp-stage">
-    <div class="lamp-cone lamp-cone--left"></div>
-    <div class="lamp-cone lamp-cone--right"></div>
-    <div class="lamp-blur-bottom"></div>
-    <div class="lamp-frost"></div>
-    <div class="lamp-glow"></div>
-    <div class="lamp-core"></div>
-    <div class="lamp-line"></div>
-    <div class="lamp-cover-top"></div>
-    <div class="lamp-particles" id="lamp-particles" aria-hidden="true"></div>
-
-    <div class="lamp-content">
-      <div class="hero-mark">α</div>
-      <h1 class="hero-title">
-        <span class="hero-title__aletheia">ALETHEIA</span>
-        <span class="hero-title__sub">Health Precision Program</span>
-      </h1>
-    </div>
+<!-- ============ HERO · Spiral ============ -->
+<section class="spiral-hero" id="hero-lamp">
+  <canvas id="spiral-canvas" aria-hidden="true"></canvas>
+  <div class="hero-overlay">
+    <div class="hero-mark">α</div>
+    <h1 class="hero-title">
+      <span class="hero-title__aletheia">ALETHEIA</span>
+      <span class="hero-title__sub">Health Precision Program</span>
+    </h1>
+    <a href="#programa" class="hero-cta-btn" id="heroCta">Conhece</a>
   </div>
 </section>
 
@@ -3553,7 +3360,7 @@
   (() => {
     const bar = document.getElementById('scrollProgress');
     const nav = document.querySelector('.nav');
-    const hero = document.querySelector('.lamp-hero');
+    const hero = document.querySelector('.spiral-hero');
     const navHamburger = document.getElementById('navHamburger');
     const navDrawer = document.getElementById('navDrawer');
     const drawerLinks = document.querySelectorAll('.drawer-link');
@@ -3783,53 +3590,6 @@
     drift();
   })();
 
-  /* Lamp hero — activate cones/glow on viewport entry */
-  (function () {
-    const lamp = document.getElementById('hero-lamp');
-    if (!lamp) return;
-    if (!('IntersectionObserver' in window)) {
-      lamp.classList.add('lamp-active');
-      return;
-    }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          lamp.classList.add('lamp-active');
-          io.disconnect();
-        }
-      });
-    }, { threshold: 0.2 });
-    io.observe(lamp);
-    setTimeout(() => lamp.classList.add('lamp-active'), 500);
-  })();
-
-  /* Floating light particles — rise from beneath the lamp */
-  (function () {
-    const host = document.getElementById('lamp-particles');
-    if (!host) return;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) return;
-
-    const COUNT = window.innerWidth < 600 ? 18 : window.innerWidth < 1000 ? 26 : 36;
-    const sizes = ['', 'lamp-particle--sm', 'lamp-particle--sm', 'lamp-particle--lg'];
-
-    for (let i = 0; i < COUNT; i++) {
-      const p = document.createElement('span');
-      const sizeClass = sizes[Math.floor(Math.random() * sizes.length)];
-      p.className = 'lamp-particle' + (sizeClass ? ' ' + sizeClass : '');
-      // Horizontal start: biased to center ±40% viewport
-      const leftPct = 30 + Math.random() * 40;
-      const driftPx = (Math.random() - 0.5) * 120; // -60 to +60px drift
-      const duration = 10 + Math.random() * 10;    // 10-20s
-      const delay = Math.random() * duration * -1; // negative delay = already mid-animation
-      p.style.left = leftPct + '%';
-      p.style.setProperty('--drift', driftPx + 'px');
-      p.style.setProperty('--dur', duration + 's');
-      p.style.setProperty('--delay', delay + 's');
-      host.appendChild(p);
-    }
-  })();
-
   /* Radial orbital timeline — 10 pilares */
   (function () {
     const container = document.getElementById('orbit-container');
@@ -4016,6 +3776,210 @@
 
     // Trigger 2: fallback after 120 seconds
     setTimeout(open, 120000);
+  })();
+
+  /* ==================== */
+  /* SPIRAL HERO ANIMATION */
+  /* ==================== */
+  (function() {
+    const canvas = document.getElementById('spiral-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let width, height, size, dpr;
+    let animId;
+    let timeVal = 0;
+    let lastTime = null;
+    const DURATION = 15000; // ms per cycle
+
+    function resize() {
+      dpr = window.devicePixelRatio || 1;
+      width = canvas.offsetWidth;
+      height = canvas.offsetHeight;
+      size = Math.max(width, height);
+      canvas.width = size * dpr;
+      canvas.height = size * dpr;
+      ctx.scale(dpr, dpr);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+
+    // ---- Math helpers ----
+    function easeCustom(p, g) {
+      if (p < 0.5) return 0.5 * Math.pow(2 * p, g);
+      return 1 - 0.5 * Math.pow(2 * (1 - p), g);
+    }
+    function easeOutElastic(x) {
+      const c4 = (2 * Math.PI) / 4.5;
+      if (x <= 0) return 0;
+      if (x >= 1) return 1;
+      return Math.pow(2, -8 * x) * Math.sin((x * 8 - 0.75) * c4) + 1;
+    }
+    function mapRange(v, s1, e1, s2, e2) { return s2 + (e2 - s2) * ((v - s1) / (e1 - s1)); }
+    function clamp(v, lo, hi) { return Math.min(Math.max(v, lo), hi); }
+    function lerp(a, b, t) { return a * (1 - t) + b * t; }
+
+    // ---- Constants ----
+    const CHANGE_T = 0.32;
+    const CAM_Z = -400;
+    const CAM_DIST = 3400;
+    const Y_OFFSET = 28;
+    const VIEW_ZOOM = 100;
+    const N_STARS = 4000;
+    const TRAIL_LEN = 80;
+
+    function spiralPath(p) {
+      p = clamp(1.2 * p, 0, 1);
+      p = easeCustom(p, 1.8);
+      const turns = 6;
+      const theta = 2 * Math.PI * turns * Math.sqrt(p);
+      const r = 170 * Math.sqrt(p);
+      return { x: r * Math.cos(theta), y: r * Math.sin(theta) + Y_OFFSET };
+    }
+
+    function rotatePair(v1, v2, p, orientation) {
+      const mx = (v1.x + v2.x) / 2, my = (v1.y + v2.y) / 2;
+      const dx = v1.x - mx, dy = v1.y - my;
+      const angle = Math.atan2(dy, dx);
+      const o = orientation ? -1 : 1;
+      const r = Math.sqrt(dx * dx + dy * dy);
+      const bounce = Math.sin(p * Math.PI) * 0.05 * (1 - p);
+      return {
+        x: mx + r * (1 + bounce) * Math.cos(angle + o * Math.PI * easeOutElastic(p)),
+        y: my + r * (1 + bounce) * Math.sin(angle + o * Math.PI * easeOutElastic(p))
+      };
+    }
+
+    function projectDot(pos, sizeFactor, t) {
+      const t2 = clamp(mapRange(t, CHANGE_T, 1, 0, 1), 0, 1);
+      const camZ = CAM_Z + easeCustom(Math.pow(t2, 1.2), 1.8) * CAM_DIST;
+      if (pos.z > camZ) {
+        const depth = pos.z - camZ;
+        const x = VIEW_ZOOM * pos.x / depth;
+        const y = VIEW_ZOOM * pos.y / depth;
+        const sw = 400 * sizeFactor / depth;
+        ctx.lineWidth = sw;
+        ctx.beginPath();
+        ctx.arc(x, y, 0.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // ---- Stars ----
+    // Use seeded random for consistent layout
+    let seed = 1234;
+    function seededRand() {
+      seed = (seed * 9301 + 49297) % 233280;
+      return seed / 233280;
+    }
+
+    const stars = [];
+    for (let i = 0; i < N_STARS; i++) {
+      const angle = seededRand() * Math.PI * 2;
+      const distance = 30 * seededRand() + 15;
+      const rotDir = seededRand() > 0.5 ? 1 : -1;
+      const expRate = 1.2 + seededRand() * 0.8;
+      const finalScale = 0.7 + seededRand() * 0.6;
+      const dx = distance * Math.cos(angle);
+      const dy = distance * Math.sin(angle);
+      const spiralLoc = (1 - Math.pow(1 - seededRand(), 3.0)) / 1.3;
+      let z = lerp(0.5 * CAM_Z, CAM_DIST + CAM_Z, seededRand());
+      z = lerp(z, CAM_DIST / 2, 0.3 * spiralLoc);
+      const swf = Math.pow(seededRand(), 2.0);
+      stars.push({ angle, distance, rotDir, expRate, finalScale, dx, dy, spiralLoc, z, swf });
+    }
+
+    function renderStar(star, p, t) {
+      const sp = spiralPath(star.spiralLoc);
+      const q = p - star.spiralLoc;
+      if (q <= 0) return;
+      const dp = clamp(4 * q, 0, 1);
+      let screenX, screenY;
+      if (dp < 0.3) {
+        const e = lerp(dp, Math.pow(dp, 2), dp / 0.3);
+        screenX = lerp(sp.x, sp.x + star.dx * 0.3, e / 0.3);
+        screenY = lerp(sp.y, sp.y + star.dy * 0.3, e / 0.3);
+      } else if (dp < 0.7) {
+        const mp = (dp - 0.3) / 0.4;
+        const cs = Math.sin(mp * Math.PI) * star.rotDir * 1.5;
+        const bx = sp.x + star.dx * 0.3, by = sp.y + star.dy * 0.3;
+        const tx = sp.x + star.dx * 0.7, ty = sp.y + star.dy * 0.7;
+        const px2 = -star.dy * 0.4 * cs, py2 = star.dx * 0.4 * cs;
+        screenX = lerp(bx, tx, mp) + px2 * mp;
+        screenY = lerp(by, ty, mp) + py2 * mp;
+      } else {
+        const fp = (dp - 0.7) / 0.3;
+        const bx = sp.x + star.dx * 0.7, by = sp.y + star.dy * 0.7;
+        const td = star.distance * star.expRate * 1.5;
+        const sa = star.angle + 1.2 * star.rotDir * fp * Math.PI;
+        const tx = sp.x + td * Math.cos(sa), ty = sp.y + td * Math.sin(sa);
+        screenX = lerp(bx, tx, fp);
+        screenY = lerp(by, ty, fp);
+      }
+      const t2 = clamp(mapRange(t, CHANGE_T, 1, 0, 1), 0, 1);
+      const camZ = CAM_Z + easeCustom(Math.pow(t2, 1.2), 1.8) * CAM_DIST;
+      const vx = (star.z - camZ) * screenX / VIEW_ZOOM;
+      const vy = (star.z - camZ) * screenY / VIEW_ZOOM;
+      let sm = dp < 0.6 ? 1 + dp * 0.2 : lerp(1.2, star.finalScale, (dp - 0.6) / 0.4);
+      projectDot({ x: vx, y: vy, z: star.z }, 8.5 * star.swf * sm, t);
+    }
+
+    function drawTrail(t1, t) {
+      for (let i = 0; i < TRAIL_LEN; i++) {
+        const f = mapRange(i, 0, TRAIL_LEN, 1.1, 0.1);
+        const sw = (1.3 * (1 - t1) + 3.0 * Math.sin(Math.PI * t1)) * f;
+        ctx.fillStyle = 'white';
+        ctx.lineWidth = sw;
+        const pt = t1 - 0.00015 * i;
+        const pos = spiralPath(pt);
+        const off = { x: pos.x + 5, y: pos.y + 5 };
+        const rot = rotatePair(pos, off, Math.sin(t * Math.PI * 2) * 0.5 + 0.5, i % 2 === 0);
+        ctx.beginPath();
+        ctx.arc(rot.x, rot.y, sw / 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function frame(ts) {
+      animId = requestAnimationFrame(frame);
+      if (lastTime === null) lastTime = ts;
+      const dt = ts - lastTime;
+      lastTime = ts;
+      timeVal = (timeVal + dt / DURATION) % 1;
+      const t = timeVal;
+
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, size, size);
+      ctx.save();
+      ctx.translate(size / 2, size / 2);
+
+      const t1 = clamp(mapRange(t, 0, CHANGE_T + 0.25, 0, 1), 0, 1);
+      const t2 = clamp(mapRange(t, CHANGE_T, 1, 0, 1), 0, 1);
+      ctx.rotate(-Math.PI * easeCustom(t2, 2.7));
+
+      drawTrail(t1, t);
+
+      ctx.fillStyle = 'white';
+      for (const s of stars) renderStar(s, t1, t);
+
+      // start dot
+      if (t > CHANGE_T) {
+        const dy2 = CAM_Z * Y_OFFSET / VIEW_ZOOM;
+        projectDot({ x: 0, y: dy2, z: CAM_DIST }, 2.5, t);
+      }
+
+      ctx.restore();
+    }
+
+    animId = requestAnimationFrame(frame);
+
+    // Pause when not visible
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) { cancelAnimationFrame(animId); lastTime = null; }
+      else animId = requestAnimationFrame(frame);
+    });
   })();
 </script>
 </body>
