@@ -2565,20 +2565,7 @@
   }
   .lamp-hero.lamp-active .lamp-core { width: 16rem; }
 
-  .lamp-line {
-    position: absolute;
-    inset: auto;
-    z-index: 50;
-    height: 2px;
-    width: 15rem;
-    top: 50%;
-    transform: translateY(-7rem);
-    background: #c6a573;
-    box-shadow: 0 0 24px 2px rgba(198, 165, 115, 0.65);
-    transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: 0.3s;
-  }
-  .lamp-hero.lamp-active .lamp-line { width: 30rem; }
+  .lamp-line { display: none; }
 
   /* Floating light particles — rise from beneath the lamp, drift up */
   .lamp-particles {
@@ -2638,13 +2625,13 @@
   .lamp-content {
     position: relative;
     z-index: 50;
-    transform: translateY(-20rem);
+    transform: translateY(-6rem);
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0 24px;
     text-align: center;
-    gap: 24px;
+    gap: 20px;
   }
 
   /* Logo α */
@@ -2671,32 +2658,31 @@
     display: block;
     font-family: 'Playfair Display', Georgia, serif;
     font-weight: 700;
-    font-size: clamp(72px, 14vw, 180px);
+    font-size: clamp(48px, 7vw, 96px);
     line-height: 1;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
     background-image: linear-gradient(160deg, #d5be99 0%, #c6a573 30%, #fdf7f2 52%, #c6a573 72%, #d5be99 100%);
     background-size: 200% 100%;
-    -webkit-text-stroke: 0.5px rgba(198,165,115,0.3);
     filter: drop-shadow(0 2px 6px rgba(0,0,0,.35));
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(30px);
     animation: lamp-fade-up 1.1s cubic-bezier(0.22,1,0.36,1) 0.65s forwards,
                wordmark-shimmer 6s ease-in-out 3s infinite;
   }
   .hero-title__sub {
     display: block;
     font-family: 'Open Sans', sans-serif;
-    font-size: clamp(11px, 1.4vw, 15px);
-    letter-spacing: 0.38em;
+    font-size: clamp(10px, 1.1vw, 13px);
+    letter-spacing: 0.34em;
     text-transform: uppercase;
     font-weight: 600;
-    color: rgba(213, 190, 153, 0.75);
+    color: rgba(213, 190, 153, 0.7);
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(16px);
     animation: lamp-fade-up 0.9s cubic-bezier(0.22,1,0.36,1) 1s forwards;
   }
 
@@ -2710,14 +2696,14 @@
     .lamp-hero.lamp-active .lamp-line { width: 22rem; }
     .lamp-hero.lamp-active .lamp-core { width: 12rem; }
     .lamp-glow { width: 20rem; }
-    .lamp-content { transform: translateY(-16rem); }
+    .lamp-content { transform: translateY(-5rem); }
   }
   @media (max-width: 600px) {
     .lamp-hero.lamp-active .lamp-cone { width: 16rem; }
     .lamp-hero.lamp-active .lamp-line { width: 16rem; }
     .lamp-hero.lamp-active .lamp-core { width: 8rem; }
     .lamp-glow { width: 14rem; height: 6rem; }
-    .lamp-content { transform: translateY(-12rem); }
+    .lamp-content { transform: translateY(-4rem); }
     .lamp-headline { font-size: 42px; }
   }
   @media (prefers-reduced-motion: reduce) {
