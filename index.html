@@ -2136,14 +2136,16 @@
   }
   .popup__close {
     position: absolute;
-    top: 20px; right: 20px;
-    width: 36px; height: 36px;
+    top: 16px; right: 16px;
+    width: 44px; height: 44px;
     display: flex; align-items: center; justify-content: center;
     color: var(--muted);
     border-radius: 50%; background: transparent;
     transition: background 0.2s, color 0.2s;
     border: none; cursor: pointer;
-    font-size: 22px; line-height: 1;
+    font-size: 26px; line-height: 1;
+    z-index: 10000;
+    -webkit-tap-highlight-color: transparent;
   }
   .popup__close:hover { background: var(--rule-soft); color: var(--ink); }
   .popup__eyebrow {
@@ -2521,127 +2523,60 @@
     align-items: center;
     padding: 0 24px;
     text-align: center;
-    gap: 28px;
+    gap: 24px;
   }
 
-  .lamp-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: #d5be99;
-    font-weight: 600;
+  /* Logo α */
+  .hero-mark {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 28px; font-weight: 500;
+    color: #fdf7f2;
     opacity: 0;
-    transform: translateY(30px);
-    animation: lamp-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
-  }
-  .lamp-eyebrow::before, .lamp-eyebrow::after {
-    content: "";
-    width: 28px;
-    height: 1px;
-    background: #d5be99;
-    opacity: 0.55;
+    transform: translateY(30px) scale(0.85);
+    animation: lamp-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+    box-shadow: 0 0 40px rgba(198,165,115,0.4);
+    flex-shrink: 0;
   }
 
-  .lamp-headline {
-    margin-top: 8px;
+  /* ALETHEIA + sub */
+  .hero-title {
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+  }
+  .hero-title__aletheia {
+    display: block;
     font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 500;
-    font-size: clamp(42px, 6vw, 80px);
-    line-height: 1.02;
-    letter-spacing: -0.02em;
-    color: #fdf7f2;
-    max-width: 16ch;
-    opacity: 0;
-    transform: translateY(100px);
-    animation: lamp-fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) 0.85s forwards;
-  }
-  .lamp-headline em {
-    color: #c6a573;
-    font-style: italic;
-    font-weight: 500;
-  }
-  .lamp-headline--sub {
-    margin-top: 0;
-    font-weight: 400;
-    font-size: clamp(18px, 2vw, 26px);
-    line-height: 1.45;
-    color: rgba(253, 247, 242, 0.75);
-    font-style: italic;
-    max-width: 52ch;
-    opacity: 0;
-    transform: translateY(60px);
-    animation: lamp-fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) 1.1s forwards;
-  }
-  .lamp-headline--sub em {
-    color: #d5be99;
-    font-style: italic;
-  }
-
-  .lamp-triad {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.3em;
+    font-weight: 700;
+    font-size: clamp(72px, 14vw, 180px);
+    line-height: 1;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: rgba(213, 190, 153, 0.8);
-    font-weight: 600;
-    margin-top: 4px;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-image: linear-gradient(160deg, #d5be99 0%, #c6a573 30%, #fdf7f2 52%, #c6a573 72%, #d5be99 100%);
+    background-size: 200% 100%;
+    -webkit-text-stroke: 0.5px rgba(198,165,115,0.3);
+    filter: drop-shadow(0 0 32px rgba(198,165,115,.25)) drop-shadow(0 2px 10px rgba(0,0,0,.4));
     opacity: 0;
-    transform: translateY(30px);
-    animation: lamp-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1.3s forwards;
+    transform: translateY(50px);
+    animation: lamp-fade-up 1.1s cubic-bezier(0.22,1,0.36,1) 0.65s forwards,
+               wordmark-shimmer 6s ease-in-out 3s infinite;
   }
-  .lamp-triad span:nth-child(even) {
-    color: #c6a573;
-  }
-
-  .lamp-cta-wrap {
-    margin-top: 28px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    opacity: 0;
-    transform: translateY(40px);
-    animation: lamp-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1.5s forwards;
-  }
-  .lamp-cta {
-    padding: 18px 36px;
-    background: #fdf7f2;
-    color: #333333;
-    font-family: 'Rubik', sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.2em;
+  .hero-title__sub {
+    display: block;
+    font-family: 'Open Sans', sans-serif;
+    font-size: clamp(11px, 1.4vw, 15px);
+    letter-spacing: 0.38em;
     text-transform: uppercase;
     font-weight: 600;
-    border-radius: 999px;
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease,
-                box-shadow 0.3s ease;
-    box-shadow: 0 14px 36px -10px rgba(198, 165, 115, 0.45);
-  }
-  .lamp-cta:hover {
-    background: #c6a573;
-    color: #fdf7f2;
-    transform: translateY(-2px);
-    box-shadow: 0 20px 44px -10px rgba(198, 165, 115, 0.65);
-  }
-  .lamp-cta svg { transition: transform 0.3s ease; }
-  .lamp-cta:hover svg { transform: translateX(4px); }
-  .lamp-cta-note {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: rgba(213, 190, 153, 0.55);
-    font-weight: 500;
+    color: rgba(213, 190, 153, 0.75);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: lamp-fade-up 0.9s cubic-bezier(0.22,1,0.36,1) 1s forwards;
   }
 
   @keyframes lamp-fade-up {
@@ -2670,7 +2605,7 @@
     .lamp-hero .lamp-line {
       transition: none;
     }
-    .lamp-headline, .lamp-headline--sub, .lamp-eyebrow, .lamp-triad, .lamp-cta-wrap {
+    .hero-mark, .hero-title__aletheia, .hero-title__sub {
       animation: none;
       opacity: 1;
       transform: none;
@@ -2683,7 +2618,7 @@
 <!-- ============ POP-UP LEAD MAGNET → Quiz Tríade Hormonal ============ -->
 <div class="popup-backdrop" id="popup-backdrop"></div>
 <aside class="popup" id="popup" role="dialog" aria-labelledby="popup-title" aria-hidden="true">
-  <button class="popup__close" id="popup-close" aria-label="Fechar">×</button>
+  <button class="popup__close" id="popup-close" aria-label="Fechar" onclick="this.closest('#popup').classList.remove('show');document.getElementById('popup-backdrop').classList.remove('show');document.body.style.overflow=''">×</button>
   <div class="popup__grid">
     <div class="popup__image">
       <div class="popup__image-content">
@@ -2780,29 +2715,11 @@
     <div class="lamp-particles" id="lamp-particles" aria-hidden="true"></div>
 
     <div class="lamp-content">
-      <h2 class="hero-wordmark" aria-label="Aletheia">
-        <span class="hero-wordmark__letter" style="--i:0">A</span><span class="hero-wordmark__letter" style="--i:1">L</span><span class="hero-wordmark__letter" style="--i:2">E</span><span class="hero-wordmark__letter" style="--i:3">T</span><span class="hero-wordmark__letter" style="--i:4">H</span><span class="hero-wordmark__letter" style="--i:5">E</span><span class="hero-wordmark__letter" style="--i:6">I</span><span class="hero-wordmark__letter" style="--i:7">A</span>
-      </h2>
-      <span class="lamp-eyebrow">Medicina Funcional Integrativa</span>
-      <h1 class="lamp-headline">
-        Os teus exames estão todos <em>bons.</em>
+      <div class="hero-mark">α</div>
+      <h1 class="hero-title">
+        <span class="hero-title__aletheia">ALETHEIA</span>
+        <span class="hero-title__sub">Health Precision Program</span>
       </h1>
-      <p class="lamp-headline--sub">
-        Mas tu <em>sabe</em> que algo não está.
-      </p>
-      <div class="lamp-triad">
-        <span>Reconhecer</span><span>·</span>
-        <span>Restaurar</span><span>·</span>
-        <span>Sustentar</span>
-      </div>
-      <div class="lamp-cta-wrap">
-        <a href="#cta" class="lamp-cta">
-          Conhecer o programa
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-          </svg>
-        </a>
-      </div>
     </div>
   </div>
 </section>
