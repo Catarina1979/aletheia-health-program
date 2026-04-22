@@ -3,2181 +3,1146 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Aletheia — Exames normais. Sintomas reais. Nenhuma resposta. Há uma explicação bioquímica. E há um caminho.">
-<title>Aletheia · Health Precision Program · Catarina Veiga</title>
+<title>Aletheia — Programa de Saúde de Precisão · Dra. Catarina Veiga</title>
+<meta name="description" content="Medicina funcional de precisão para mulheres que funcionam — mas que já não se reconhecem. 66 biomarcadores. 4.8★">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Epilogue:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23F8F6F1'/><text x='50' y='72' font-family='Georgia,serif' font-size='72' fill='%232A2926' text-anchor='middle' font-style='italic'>α</text></svg>">
-
 <style>
-/* ── TOKENS ─────────────────────────────────────────────── */
-:root {
-  --bg:          oklch(97% 0.008 90);
-  --bg-alt:      oklch(94.5% 0.012 90);
-  --ink:         oklch(22% 0.008 90);
-  --ink-mid:     oklch(38% 0.008 90);
-  --ink-soft:    oklch(52% 0.01 90);
-  --sage:        oklch(52% 0.04 160);
-  --sage-deep:   oklch(38% 0.04 160);
-  --sage-tint:   oklch(93% 0.018 160);
-  --gold:        oklch(72% 0.08 75);
-  --gold-soft:   oklch(80% 0.06 75);
-  --gold-pale:   oklch(88% 0.04 75);
-  --rule:        oklch(88% 0.01 90);
-  --rule-soft:   oklch(92% 0.008 90);
-  --footer-bg:   oklch(18% 0.008 90);
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+:root{
+  --bg:oklch(97% 0.008 90);
+  --bg-alt:oklch(94.5% 0.012 90);
+  --ink:oklch(22% 0.008 90);
+  --ink-mid:oklch(38% 0.008 90);
+  --ink-soft:oklch(52% 0.01 90);
+  --sage:oklch(52% 0.04 160);
+  --sage-deep:oklch(38% 0.04 160);
+  --sage-tint:oklch(93% 0.018 160);
+  --gold:oklch(72% 0.08 75);
+  --gold-soft:oklch(80% 0.06 75);
+  --gold-pale:oklch(88% 0.04 75);
+  --rule:oklch(88% 0.01 90);
+  --rule-soft:oklch(92% 0.008 90);
+  --hero-bg:#0E0D0B;
+  --footer-bg:#0A0908;
+  --font-serif:'Spectral',Georgia,serif;
+  --font-sans:'Epilogue',system-ui,sans-serif
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);overflow-x:hidden}
 
-  --font-serif:  'Spectral', Georgia, 'Times New Roman', serif;
-  --font-sans:   'Epilogue', -apple-system, BlinkMacSystemFont, sans-serif;
+/* ANNOUNCE BAR */
+#announce-bar{background:var(--gold);color:var(--ink);text-align:center;padding:10px 24px;font-family:var(--font-sans);font-size:.78rem;font-weight:500;letter-spacing:.04em;position:relative;z-index:200;transition:max-height .4s ease,opacity .4s ease,padding .4s ease;max-height:60px;overflow:hidden}
+#announce-bar.hidden{max-height:0;opacity:0;padding-top:0;padding-bottom:0}
+#announce-bar a{color:var(--ink);font-weight:500;text-decoration:underline;text-underline-offset:3px}
 
-  --container:   1200px;
-  --narrow:      860px;
-  --section-v:   clamp(72px, 10vw, 120px);
-  --section-h:   clamp(20px, 5vw, 48px);
-}
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;transition:background .35s ease,backdrop-filter .35s ease}
+#nav.frosted{background:rgba(14,13,11,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.nav-logo{font-family:var(--font-serif);font-weight:300;font-size:1.25rem;color:#fff;letter-spacing:.15em;text-decoration:none;text-transform:uppercase}
+.nav-links{display:flex;gap:36px;list-style:none;align-items:center}
+.nav-links a{font-family:var(--font-sans);font-size:.8rem;font-weight:400;color:rgba(255,255,255,.65);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-cta{color:var(--ink)!important;background:var(--gold);padding:9px 22px;border-radius:50px;transition:background .2s!important}
+.nav-cta:hover{background:var(--gold-soft)!important}
+#hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+#hamburger span{display:block;width:22px;height:1.5px;background:#fff;transition:transform .3s,opacity .3s}
+#hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+#hamburger.open span:nth-child(2){opacity:0}
+#hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+#mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(14,13,11,.97);backdrop-filter:blur(16px);z-index:99;padding:32px 48px 48px;flex-direction:column;gap:28px}
+#mobile-menu.open{display:flex}
+#mobile-menu a{font-family:var(--font-sans);font-size:1.1rem;font-weight:300;color:rgba(255,255,255,.75);text-decoration:none;letter-spacing:.04em;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:20px}
+#mobile-menu a:last-child{border-bottom:none}
 
-/* ── RESET ──────────────────────────────────────────────── */
-*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
-html { scroll-behavior:smooth; font-size:17px; }
-body {
-  background: var(--bg);
-  color: var(--ink-soft);
-  font-family: var(--font-sans);
-  font-weight: 300;
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-a { color: inherit; text-decoration: none; }
-img { display:block; max-width:100%; }
-button { cursor:pointer; border:none; background:none; font-family:inherit; }
-::selection { background: var(--gold); color: var(--bg); }
+/* HERO */
+#hero{position:relative;width:100%;height:100svh;min-height:600px;background:var(--hero-bg);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero-content{position:relative;z-index:2;padding:0 48px 64px;max-width:100%}
+.hero-eyebrow{font-family:var(--font-sans);font-size:.72rem;font-weight:400;color:var(--sage);letter-spacing:.18em;text-transform:uppercase;margin-bottom:20px;display:block}
+#hero-wordmark{font-family:var(--font-serif);font-weight:300;color:#fff;letter-spacing:.06em;text-transform:uppercase;line-height:.9;white-space:nowrap;display:block;margin-bottom:20px}
+.hero-tagline{font-family:var(--font-serif);font-style:italic;font-weight:300;font-size:clamp(.95rem,1.6vw,1.2rem);color:rgba(255,255,255,.55);letter-spacing:.02em}
+.hero-cta-wrap{position:absolute;bottom:64px;right:48px;z-index:3}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);font-size:.85rem;font-weight:500;color:var(--ink);background:var(--gold);padding:14px 28px;border-radius:50px;text-decoration:none;letter-spacing:.03em;transition:background .2s,transform .2s;white-space:nowrap}
+.hero-cta:hover{background:var(--gold-soft);transform:translateY(-1px)}
 
-/* ── CURSOR ─────────────────────────────────────────────── */
-.cursor-dot {
-  position:fixed; width:6px; height:6px; border-radius:50%;
-  background: var(--ink); pointer-events:none; z-index:9999;
-  transform:translate(-50%,-50%); transition:transform .08s ease, opacity .2s ease;
-}
-.cursor-ring {
-  position:fixed; width:32px; height:32px; border-radius:50%;
-  border:1px solid var(--ink-mid); pointer-events:none; z-index:9998;
-  transform:translate(-50%,-50%); transition:transform .22s ease, opacity .3s ease;
-  opacity:.45;
-}
-body.cursor-link .cursor-ring { transform:translate(-50%,-50%) scale(1.5); opacity:.2; }
+/* SHARED */
+section{width:100%}
+.section-inner{max-width:1200px;margin:0 auto;padding:0 48px}
+.eyebrow{font-family:var(--font-sans);font-size:.72rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--sage);margin-bottom:20px;display:block}
+.eyebrow-light{color:rgba(94,122,108,.8)}
 
-/* ── SCROLL PROGRESS ────────────────────────────────────── */
-#progress-bar {
-  position:fixed; top:0; left:0; height:2px; width:0%;
-  background: var(--gold); z-index:9997; transition:width .12s linear;
-}
+/* 01 MISSION */
+#mission{background:var(--bg);padding:100px 0;text-align:center}
+.mission-statement{font-family:var(--font-serif);font-weight:300;font-size:clamp(1.5rem,3.5vw,2.8rem);color:var(--ink);line-height:1.35;max-width:820px;margin:0 auto 56px;letter-spacing:-.01em}
+.mission-statement em{font-style:italic;font-weight:400}
+.mission-stats{font-family:var(--font-sans);font-size:.85rem;font-weight:400;color:var(--ink-soft);letter-spacing:.08em;display:flex;justify-content:center;flex-wrap:wrap;gap:0 4px}
+.mission-stats .stat{color:var(--ink-mid);font-weight:500}
+.mission-stats .sep{color:var(--rule);padding:0 8px}
 
-/* ── ANNOUNCE BAR ───────────────────────────────────────── */
-.announce-bar {
-  position:fixed; top:0; left:0; right:0; z-index:200;
-  background: var(--ink);
-  color: var(--bg);
-  padding:10px 48px;
-  display:flex; align-items:center; justify-content:center; gap:16px;
-  font-family: var(--font-sans);
-  font-size:10.5px; letter-spacing:.22em; text-transform:uppercase; font-weight:400;
-  transition: transform .4s cubic-bezier(.22,1,.36,1);
-}
-.announce-bar.is-hidden { transform:translateY(-100%); }
-.announce-bar__dot {
-  width:5px; height:5px; border-radius:50%; background:var(--gold);
-  animation: pulseDot 2.4s ease-in-out infinite; flex-shrink:0;
-}
-@keyframes pulseDot {
-  0%,100% { opacity:1; transform:scale(1); }
-  50%      { opacity:.4; transform:scale(.6); }
-}
-.announce-bar__link {
-  color: var(--gold-soft);
-  border-bottom: 1px solid rgba(197,164,106,.3);
-  padding-bottom:1px;
-  transition: border-color .2s ease;
-}
-.announce-bar__link:hover { border-color: var(--gold-soft); }
-.announce-bar__close {
-  position:absolute; right:18px; color:rgba(248,246,241,.35);
-  font-size:14px; padding:4px; transition:color .2s ease;
-}
-.announce-bar__close:hover { color:rgba(248,246,241,.8); }
+/* 02 PROBLEMA */
+#problema{background:var(--hero-bg);padding:100px 0}
+#problema h2{font-family:var(--font-sans);font-weight:500;font-size:clamp(1.8rem,4vw,3.2rem);color:#fff;line-height:1.2;margin-bottom:72px;letter-spacing:-.02em;max-width:640px}
+.whisper-list{list-style:none}
+.whisper-item{display:grid;grid-template-columns:80px 1fr;align-items:baseline;gap:0 32px;padding:28px 8px;border-top:1px solid rgba(255,255,255,.07);cursor:default;transition:background .25s;border-radius:4px}
+.whisper-item:last-child{border-bottom:1px solid rgba(255,255,255,.07)}
+.whisper-item:hover{background:rgba(38,60,48,.5)}
+.whisper-num{font-family:var(--font-serif);font-style:italic;font-weight:300;font-size:3.5rem;color:var(--sage);opacity:.7;line-height:1;user-select:none}
+.whisper-text{font-family:var(--font-serif);font-style:italic;font-weight:300;font-size:clamp(1rem,1.8vw,1.25rem);color:rgba(255,255,255,.85);line-height:1.55}
 
-/* ── NAV ────────────────────────────────────────────────── */
-nav {
-  position:fixed; top:36px; left:0; right:0; z-index:190;
-  padding:18px clamp(20px,4vw,48px);
-  display:flex; align-items:center; justify-content:space-between;
-  transition: background .3s ease, box-shadow .3s ease, top .4s cubic-bezier(.22,1,.36,1);
-}
-nav.scrolled {
-  background: rgba(248,246,241,.95);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 1px 0 var(--rule);
-}
-.nav-announce-hidden nav { top:0; }
+/* 03 OUTCOMES */
+#outcomes{background:var(--bg-alt);padding:100px 0}
+#outcomes h2{font-family:var(--font-serif);font-weight:300;font-size:clamp(1.8rem,4vw,3rem);color:var(--ink);margin-bottom:72px;letter-spacing:-.01em}
+.outcomes-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
+.outcome-col{padding:0 48px 0 0;border-right:1px solid var(--rule)}
+.outcome-col:first-child{padding-left:0}
+.outcome-col:last-child{border-right:none;padding-right:0;padding-left:48px}
+.outcome-col:nth-child(2){padding:0 48px}
+.outcome-roman{font-family:var(--font-serif);font-style:italic;font-weight:300;font-size:2rem;color:var(--sage);margin-bottom:16px;display:block}
+.outcome-col h3{font-family:var(--font-sans);font-weight:500;font-size:1.05rem;color:var(--ink);margin-bottom:20px;letter-spacing:-.01em}
+.outcome-col p{font-family:var(--font-sans);font-weight:300;font-size:.9rem;color:var(--ink-soft);line-height:1.7}
+.outcome-col:nth-child(2){padding-top:48px}
+.outcome-col:nth-child(3){padding-top:24px}
 
-.nav-logo {
-  font-family: var(--font-serif);
-  font-weight: 300;
-  font-size: 18px;
-  letter-spacing: .14em;
-  color: var(--ink);
-  text-transform: uppercase;
-}
-.nav-logo span {
-  font-style:italic;
-  color: var(--gold);
-  font-size:22px;
-  margin-right:4px;
-}
-.nav-links {
-  display:flex; align-items:center; gap:36px;
-  list-style:none;
-}
-.nav-links a {
-  font-family: var(--font-sans);
-  font-size:10.5px; font-weight:400;
-  letter-spacing:.26em; text-transform:uppercase;
-  color: var(--ink-mid);
-  transition: color .2s ease;
-}
-.nav-links a:hover { color: var(--ink); }
-.nav-cta {
-  font-family: var(--font-sans);
-  font-size:10.5px; font-weight:400;
-  letter-spacing:.22em; text-transform:uppercase;
-  color: var(--bg);
-  background: var(--ink);
-  padding:12px 24px;
-  transition: background .25s ease, transform .25s ease;
-}
-.nav-cta:hover { background: var(--sage); transform:translateY(-1px); color:var(--bg); }
+/* 04 CASO REAL */
+#caso-real{background:var(--bg);padding:100px 0}
+#caso-real h2{font-family:var(--font-serif);font-weight:300;font-size:clamp(1.6rem,3.5vw,2.6rem);color:var(--ink);margin-bottom:64px;letter-spacing:-.01em}
+.caso-split{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:start}
+.lab-table{width:100%;border-collapse:collapse}
+.lab-table caption{font-family:var(--font-sans);font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);text-align:left;padding-bottom:16px}
+.lab-table th{font-family:var(--font-sans);font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding:10px 0;text-align:left}
+.lab-table td{font-family:var(--font-sans);font-size:.88rem;font-weight:300;color:var(--ink-mid);padding:12px 0;border-bottom:1px solid var(--rule-soft)}
+.lab-table td:first-child{font-weight:400;color:var(--ink)}
+.status-high{color:oklch(55% .12 35);font-weight:500}
+.status-low{color:oklch(48% .1 260);font-weight:500}
+.status-descent{color:oklch(55% .1 60);font-weight:500}
+.spectrum-panel h4{font-family:var(--font-sans);font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:20px}
+.spectrum-row{margin-bottom:22px}
+.spectrum-label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.spectrum-name{font-family:var(--font-sans);font-size:.8rem;font-weight:500;color:var(--ink)}
+.spectrum-value{font-family:var(--font-serif);font-size:.8rem;font-weight:400;color:var(--ink-soft)}
+.spectrum-bar-wrap{position:relative;height:10px;width:100%}
+.spectrum-bar-wrap svg{display:block;width:100%;height:10px;overflow:visible}
+.resultado-box{margin-top:64px;background:var(--ink);padding:40px 48px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px}
+.resultado-item h5{font-family:var(--font-sans);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:10px}
+.resultado-item p{font-family:var(--font-serif);font-weight:300;font-size:.95rem;color:rgba(255,255,255,.85);line-height:1.5}
+.resultado-item .big-num{font-size:2rem;color:var(--gold-soft);font-weight:300;display:block;margin-bottom:4px}
 
-.hamburger {
-  display:none; flex-direction:column; gap:5px; padding:4px; z-index:210;
-}
-.hamburger span {
-  display:block; width:22px; height:1px;
-  background: var(--ink); transition: all .3s ease;
-}
-.hamburger.open span:nth-child(1) { transform:translateY(6px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity:0; }
-.hamburger.open span:nth-child(3) { transform:translateY(-6px) rotate(-45deg); }
+/* 05 CASCATA */
+#cascata{background:var(--hero-bg);padding:120px 0;overflow:hidden}
+.cascata-intro{max-width:680px;margin-bottom:80px}
+.cascata-intro h2{font-family:var(--font-sans);font-weight:500;font-size:clamp(1.4rem,2.8vw,2.2rem);color:rgba(255,255,255,.9);margin-bottom:16px}
+.cascata-intro p{font-family:var(--font-sans);font-weight:300;font-size:.9rem;color:rgba(255,255,255,.4);line-height:1.7}
+#cascata-text{font-family:var(--font-serif);font-style:italic;font-weight:300;font-size:clamp(1.4rem,2.8vw,2.2rem);color:rgba(255,255,255,.15);line-height:1.7;max-width:900px}
+#cascata-text .word{display:inline-block;transition:color .5s ease,opacity .5s ease;margin-right:.28em}
+#cascata-text.revealed .word{color:rgba(255,255,255,.85)}
 
-.mobile-menu {
-  display:none; position:fixed; inset:0; z-index:195;
-  background:var(--bg); padding:120px 40px 60px;
-  flex-direction:column; gap:32px;
-}
-.mobile-menu.open { display:flex; }
-.mobile-menu a {
-  font-family:var(--font-serif); font-size:28px; font-weight:300;
-  color:var(--ink); border-bottom:1px solid var(--rule); padding-bottom:24px;
-}
+/* 06 PROTOCOL */
+#protocol{background:var(--bg-alt);padding:100px 0}
+#protocol h2{font-family:var(--font-serif);font-weight:300;font-size:clamp(1.6rem,3.5vw,2.6rem);color:var(--ink);margin-bottom:72px;letter-spacing:-.01em}
+.phases-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px 64px}
+.phase{border-top:1px solid var(--rule);padding-top:32px}
+.phase-num{font-family:var(--font-serif);font-style:italic;font-weight:300;font-size:3.5rem;color:var(--sage);opacity:.7;line-height:1;margin-bottom:20px;display:block}
+.phase h3{font-family:var(--font-sans);font-weight:500;font-size:1rem;color:var(--ink);margin-bottom:16px;letter-spacing:.02em}
+.phase ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.phase ul li{font-family:var(--font-sans);font-weight:300;font-size:.88rem;color:var(--ink-soft);line-height:1.5;padding-left:14px;position:relative}
+.phase ul li::before{content:'—';position:absolute;left:0;color:var(--sage);font-size:.75rem}
 
-/* ── FADE-UP ────────────────────────────────────────────── */
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(28px); }
-  to   { opacity:1; transform:translateY(0); }
-}
-.fade-up {
-  opacity:0;
-  transition: opacity .75s ease, transform .75s ease;
-  transform: translateY(24px);
-}
-.fade-up.visible {
-  opacity:1;
-  transform: translateY(0);
-}
+/* 07 PROGRAMA REVEAL */
+#programa-reveal{background:var(--hero-bg);padding:140px 0;text-align:center}
+.alpha-symbol{font-family:var(--font-serif);font-style:italic;font-weight:300;font-size:7.5rem;color:var(--gold);line-height:1;display:block;margin-bottom:24px}
+.programa-wordmark{font-family:var(--font-serif);font-weight:300;font-size:clamp(2.5rem,6vw,5rem);color:#fff;letter-spacing:.15em;text-transform:uppercase;display:block;margin-bottom:16px}
+.programa-etymology{font-family:var(--font-sans);font-size:.72rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--sage);margin-bottom:24px;display:block}
+.programa-tagline{font-family:var(--font-serif);font-style:italic;font-weight:300;font-size:clamp(1rem,1.8vw,1.3rem);color:rgba(255,255,255,.5);margin-bottom:56px;display:block}
+.programa-price{font-family:var(--font-sans);font-weight:300;font-size:.85rem;color:rgba(255,255,255,.35);letter-spacing:.08em;margin-bottom:40px;display:block}
+.programa-price strong{font-family:var(--font-serif);font-size:2rem;font-weight:300;color:rgba(255,255,255,.85);display:block;letter-spacing:0;margin-top:8px}
+.btn-gold{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);font-size:.88rem;font-weight:500;color:var(--ink);background:var(--gold);padding:16px 36px;border-radius:50px;text-decoration:none;letter-spacing:.03em;transition:background .2s,transform .2s}
+.btn-gold:hover{background:var(--gold-soft);transform:translateY(-2px)}
 
-/* ── EYEBROW / LABEL ────────────────────────────────────── */
-.eyebrow {
-  display:flex; align-items:center; gap:12px;
-  font-family: var(--font-sans);
-  font-size:10px; font-weight:400;
-  letter-spacing:.36em; text-transform:uppercase;
-  color: var(--sage);
-  margin-bottom:24px;
-}
-.eyebrow::before {
-  content:'';
-  display:block; width:28px; height:1px;
-  background: var(--sage); flex-shrink:0;
-}
+/* 08 CAMADAS */
+#camadas{background:var(--bg);padding:100px 0}
+#camadas h2{font-family:var(--font-serif);font-weight:300;font-size:clamp(1.6rem,3.5vw,2.6rem);color:var(--ink);margin-bottom:72px;letter-spacing:-.01em}
+.camadas-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
+.camada-col{padding:0 48px 0 0;border-right:1px solid var(--rule)}
+.camada-col:first-child{padding-left:0}
+.camada-col:last-child{border-right:none;padding-right:0;padding-left:48px}
+.camada-col:nth-child(2){padding:0 48px}
+.camada-col h3{font-family:var(--font-sans);font-weight:500;font-size:.9rem;color:var(--ink);letter-spacing:.06em;text-transform:uppercase;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--rule)}
+.camada-col ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.camada-col ul li{font-family:var(--font-sans);font-weight:300;font-size:.88rem;color:var(--ink-soft);line-height:1.5;padding-left:16px;position:relative}
+.camada-col ul li::before{content:'·';position:absolute;left:0;color:var(--sage);font-size:1.2rem;line-height:1.2}
 
-/* ── SECTION LAYOUT ─────────────────────────────────────── */
-.section {
-  padding: var(--section-v) var(--section-h);
-}
-.section--alt  { background: var(--bg-alt); }
-.section--dark {
-  background: var(--ink);
-  color: var(--bg);
-}
-.section--dark h2,
-.section--dark h3 { color: var(--bg); }
-.section--dark .eyebrow { color: var(--gold-soft); }
-.section--dark .eyebrow::before { background: var(--gold-soft); }
+/* 09 ORBITAL */
+#orbital{background:var(--sage-deep);padding:100px 0}
+.orbital-inner{display:grid;grid-template-columns:1fr 560px;gap:80px;align-items:center}
+.orbital-text h2{font-family:var(--font-serif);font-weight:300;font-size:clamp(1.6rem,3.5vw,2.6rem);color:#fff;margin-bottom:24px;letter-spacing:-.01em;line-height:1.25}
+.orbital-text p{font-family:var(--font-sans);font-weight:300;font-size:.92rem;color:rgba(255,255,255,.6);line-height:1.75;max-width:420px}
+.orbital-text .eyebrow{color:rgba(197,164,106,.7)}
+#orbital-canvas{display:block;cursor:pointer}
+#orbital-info{font-family:var(--font-sans);font-size:.8rem;color:rgba(255,255,255,.4);margin-top:12px;text-align:center;height:20px}
 
-.container {
-  max-width: var(--container);
-  margin: 0 auto;
-}
-.container--narrow {
-  max-width: var(--narrow);
-  margin: 0 auto;
-}
+/* 10 SERVIÇOS */
+#servicos{background:var(--bg-alt);padding:100px 0}
+#servicos h2{font-family:var(--font-serif);font-weight:300;font-size:clamp(1.6rem,3.5vw,2.6rem);color:var(--ink);margin-bottom:72px;letter-spacing:-.01em}
+.pilares-toc{width:100%}
+.pilar-row{display:grid;grid-template-columns:72px 1fr auto auto;align-items:center;gap:0 32px;padding:22px 0;border-top:1px solid var(--rule);transition:background .2s;border-radius:4px}
+.pilar-row:last-child{border-bottom:1px solid var(--rule)}
+.pilar-row.pilar-featured{background:var(--ink);padding:28px 32px;border-top:none;border-bottom:none;margin-top:8px}
+.pilar-roman{font-family:var(--font-serif);font-style:italic;font-weight:300;font-size:1.6rem;color:var(--sage);opacity:.8}
+.pilar-row.pilar-featured .pilar-roman{color:var(--sage-tint);opacity:.6}
+.pilar-name{font-family:var(--font-sans);font-weight:400;font-size:.95rem;color:var(--ink)}
+.pilar-row.pilar-featured .pilar-name{color:#fff}
+.pilar-tag{font-family:var(--font-sans);font-weight:300;font-size:.78rem;color:var(--ink-soft);text-align:right;padding-right:24px}
+.pilar-row.pilar-featured .pilar-tag{color:rgba(255,255,255,.45)}
+.maya-badge{font-family:var(--font-sans);font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--rule);padding:4px 10px;border-radius:50px;white-space:nowrap}
+.pilar-row.pilar-featured .maya-badge{border-color:rgba(255,255,255,.15);color:var(--gold-soft)}
 
-.section-title {
-  font-family: var(--font-serif);
-  font-weight: 300;
-  font-size: clamp(38px, 5.5vw, 68px);
-  letter-spacing: -.01em;
-  line-height: 1.07;
-  color: var(--ink);
-}
-.section-lede {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(17px, 2vw, 21px);
-  line-height: 1.65;
-  color: var(--ink-mid);
-  margin-top: 20px;
-}
+/* 11 OBJEÇÕES */
+#objecoes{background:var(--hero-bg);padding:100px 0}
+#objecoes h2{font-family:var(--font-serif);font-weight:300;font-size:clamp(1.6rem,3.5vw,2.6rem);color:#fff;margin-bottom:72px;letter-spacing:-.01em}
+.objecao-item{padding:48px 0;border-top:1px solid rgba(255,255,255,.07);max-width:800px}
+.objecao-item:last-child{border-bottom:1px solid rgba(255,255,255,.07)}
+.objecao-q{font-family:var(--font-serif);font-style:italic;font-weight:300;font-size:clamp(1.2rem,2.5vw,1.8rem);color:rgba(255,255,255,.9);margin-bottom:20px;line-height:1.4}
+.objecao-a{font-family:var(--font-sans);font-weight:300;font-size:.92rem;color:rgba(255,255,255,.5);line-height:1.75}
 
-/* ── DIVIDER ────────────────────────────────────────────── */
-.rule {
-  border:none;
-  height:1px;
-  background: linear-gradient(90deg, transparent, var(--rule) 20%, var(--rule) 80%, transparent);
-  margin: 0;
-}
+/* 12 TESTIMONIALS */
+#testimonials{background:var(--bg-alt);padding:100px 0 0}
+#testimonials h2{font-family:var(--font-serif);font-weight:300;font-size:clamp(1.6rem,3.5vw,2.6rem);color:var(--ink);margin-bottom:64px;letter-spacing:-.01em}
+.testi-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;padding-bottom:72px}
+.testi-card{border-top:1px solid var(--rule);padding-top:28px}
+.testi-stars{font-size:.8rem;color:var(--gold);letter-spacing:2px;margin-bottom:16px;display:block}
+.testi-quote{font-family:var(--font-serif);font-style:italic;font-weight:300;font-size:1.05rem;color:var(--ink-mid);line-height:1.6;margin-bottom:20px}
+.testi-name{font-family:var(--font-sans);font-size:.78rem;font-weight:500;color:var(--ink-soft);letter-spacing:.06em;text-transform:uppercase}
+.marquee-strip{background:var(--bg);padding:20px 0;overflow:hidden;border-top:1px solid var(--rule)}
+.marquee-track{display:flex;gap:0;animation:marquee-scroll 28s linear infinite;width:max-content}
+.marquee-track:hover{animation-play-state:paused}
+.marquee-item{font-family:var(--font-serif);font-style:italic;font-weight:300;font-size:.9rem;color:var(--ink-soft);white-space:nowrap;padding:0 40px;display:flex;align-items:center;gap:32px}
+.marquee-item::after{content:'·';color:var(--sage);font-size:1.2rem;font-style:normal}
+@keyframes marquee-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-/* ── BUTTONS ────────────────────────────────────────────── */
-.btn {
-  display:inline-flex; align-items:center; gap:10px;
-  font-family: var(--font-sans);
-  font-size:11px; font-weight:400;
-  letter-spacing:.22em; text-transform:uppercase;
-  padding:15px 34px;
-  transition: all .25s ease;
-}
-.btn--filled {
-  background: var(--ink); color: var(--bg);
-}
-.btn--filled:hover { background: var(--sage); transform:translateY(-2px); }
-.btn--ghost {
-  color: var(--ink-mid);
-  border-bottom: 1px solid var(--rule);
-  padding-left:0; padding-right:0;
-}
-.btn--ghost:hover { color: var(--ink); border-color: var(--sage); }
-.btn--gold {
-  background: var(--gold); color: var(--ink);
-}
-.btn--gold:hover { background: var(--gold-soft); transform:translateY(-2px); }
+/* 13 CTA FINAL */
+#cta-final{background:var(--hero-bg);padding:140px 0;text-align:center}
+.cta-final-alpha{font-family:var(--font-serif);font-style:italic;font-weight:300;font-size:5rem;color:var(--gold);display:block;margin-bottom:32px;line-height:1}
+.cta-final-heading{font-family:var(--font-serif);font-weight:300;font-size:clamp(1.8rem,4vw,3rem);color:#fff;margin-bottom:20px;letter-spacing:-.01em}
+.cta-final-tagline{font-family:var(--font-serif);font-style:italic;font-weight:300;font-size:1.1rem;color:rgba(255,255,255,.45);margin-bottom:56px;display:block}
+.cta-final-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-outline-white{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);font-size:.88rem;font-weight:400;color:rgba(255,255,255,.7);background:transparent;border:1px solid rgba(255,255,255,.2);padding:16px 36px;border-radius:50px;text-decoration:none;letter-spacing:.03em;transition:border-color .2s,color .2s}
+.btn-outline-white:hover{border-color:rgba(255,255,255,.5);color:#fff}
 
-/* ═══════════════════════════════════════════════════════════
-   HERO
-═══════════════════════════════════════════════════════════ */
-#hero {
-  min-height: 100svh;
-  background: var(--bg);
-  display:flex; flex-direction:column;
-  justify-content:center; align-items:center;
-  text-align:center;
-  padding: clamp(100px,14vw,160px) var(--section-h) clamp(72px,8vw,100px);
-  position:relative; overflow:hidden;
-}
-#hero::before,#hero::after {
-  content:''; position:absolute; border-radius:50%;
-  pointer-events:none;
-}
-#hero::before {
-  width:480px; height:480px; top:-80px; right:-120px;
-  background: radial-gradient(circle, oklch(72% 0.08 75 / .07) 0%, transparent 70%);
-}
-#hero::after {
-  width:360px; height:360px; bottom:-40px; left:-60px;
-  background: radial-gradient(circle, oklch(52% 0.04 160 / .08) 0%, transparent 70%);
-}
+/* FOOTER */
+footer{background:var(--footer-bg);padding:72px 0 48px}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 48px}
+.footer-top{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:48px;margin-bottom:64px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.06)}
+.footer-brand .footer-logo{font-family:var(--font-serif);font-weight:300;font-size:1.1rem;color:#fff;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;display:block;margin-bottom:16px}
+.footer-brand p{font-family:var(--font-sans);font-weight:300;font-size:.82rem;color:rgba(255,255,255,.3);line-height:1.65}
+.footer-col h5{font-family:var(--font-sans);font-size:.7rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:20px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul li a{font-family:var(--font-sans);font-weight:300;font-size:.85rem;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
+.footer-col ul li a:hover{color:rgba(255,255,255,.9)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-bottom p{font-family:var(--font-sans);font-size:.75rem;color:rgba(255,255,255,.2)}
+.footer-bottom a{color:rgba(255,255,255,.3);text-decoration:none}
 
-.hero-eyebrow {
-  display:flex; align-items:center; gap:18px;
-  font-family: var(--font-sans);
-  font-size:10px; font-weight:400;
-  letter-spacing:.36em; text-transform:uppercase;
-  color: var(--sage);
-  margin-bottom:32px;
-  animation: fadeUp .8s ease both;
-}
-.hero-eyebrow::before,
-.hero-eyebrow::after {
-  content:''; display:block;
-  width:40px; height:1px; background: var(--sage);
-}
+/* FADE-UP */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
 
-.hero-alpha {
-  font-family: var(--font-serif);
-  font-style:italic; font-weight:300;
-  font-size:44px; line-height:1;
-  color: var(--gold);
-  margin-bottom:8px;
-  animation: fadeUp .8s .12s ease both;
-}
+/* POPUP */
+#popup-overlay{display:none;position:fixed;inset:0;background:rgba(10,9,8,.75);z-index:1000;align-items:center;justify-content:center;padding:24px}
+#popup-overlay.open{display:flex}
+#popup-box{background:var(--hero-bg);max-width:520px;width:100%;padding:56px 48px;position:relative;border:1px solid rgba(255,255,255,.08)}
+#popup-close{position:absolute;top:20px;right:24px;background:none;border:none;color:rgba(255,255,255,.35);font-size:1.4rem;cursor:pointer;line-height:1;transition:color .2s}
+#popup-close:hover{color:rgba(255,255,255,.8)}
+.popup-alpha{font-family:var(--font-serif);font-style:italic;font-size:3rem;color:var(--gold);display:block;margin-bottom:16px}
+#popup-box h3{font-family:var(--font-serif);font-weight:300;font-size:1.5rem;color:#fff;margin-bottom:12px}
+#popup-box p{font-family:var(--font-sans);font-weight:300;font-size:.88rem;color:rgba(255,255,255,.45);line-height:1.65;margin-bottom:32px}
+.popup-btns{display:flex;flex-direction:column;gap:12px}
+.popup-btns .btn-gold{justify-content:center;width:100%}
+.popup-dismiss{font-family:var(--font-sans);font-size:.78rem;color:rgba(255,255,255,.25);text-align:center;cursor:pointer;background:none;border:none;letter-spacing:.04em;transition:color .2s}
+.popup-dismiss:hover{color:rgba(255,255,255,.5)}
 
-.hero-wordmark {
-  font-family: var(--font-serif);
-  font-weight: 300;
-  font-size: clamp(64px, 13vw, 190px);
-  letter-spacing: .10em;
-  line-height: 1;
-  color: var(--ink);
-  text-transform: uppercase;
-  animation: fadeUp .9s .22s ease both;
-}
-
-.hero-divider {
-  width: 180px; height:1px; margin:36px auto;
-  background: linear-gradient(90deg, transparent, var(--sage) 30%, var(--sage) 70%, transparent);
-  animation: fadeUp .7s .32s ease both;
-}
-
-.hero-tagline {
-  font-family: var(--font-serif);
-  font-style:italic; font-weight:300;
-  font-size: clamp(16px, 2vw, 20px);
-  line-height:1.6;
-  color: var(--ink-mid);
-  max-width:640px;
-  margin: 0 auto 48px;
-  animation: fadeUp .8s .42s ease both;
-}
-
-.hero-actions {
-  display:flex; flex-wrap:wrap;
-  align-items:center; justify-content:center; gap:28px;
-  animation: fadeUp .8s .54s ease both;
-}
-
-.hero-stats {
-  margin-top: 72px;
-  display:grid; grid-template-columns:repeat(4,1fr);
-  gap:1px;
-  border:1px solid var(--rule);
-  max-width:720px; width:100%;
-  animation: fadeUp .8s .64s ease both;
-}
-.hero-stat {
-  padding:24px 16px;
-  text-align:center;
-  border-right:1px solid var(--rule);
-}
-.hero-stat:last-child { border-right:none; }
-.hero-stat__number {
-  font-family: var(--font-serif);
-  font-weight:300;
-  font-size: clamp(24px, 3.5vw, 36px);
-  color: var(--ink);
-  display:block;
-}
-.hero-stat__label {
-  font-family: var(--font-sans);
-  font-size:9.5px; font-weight:400;
-  letter-spacing:.28em; text-transform:uppercase;
-  color: var(--sage);
-  display:block; margin-top:4px;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   PROBLEMA — 8 WHISPERS
-═══════════════════════════════════════════════════════════ */
-#problema {
-  background: var(--bg-alt);
-}
-.whisper-grid {
-  display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap:1px;
-  background: var(--rule);
-  border:1px solid var(--rule);
-  margin-top:56px;
-}
-.whisper-card {
-  background: var(--bg-alt);
-  padding:36px 32px;
-  cursor:default;
-  transition: background .35s ease, color .35s ease;
-  position:relative;
-}
-.whisper-card:hover {
-  background: var(--ink);
-}
-.whisper-card:hover .whisper-number { color: var(--gold-soft); }
-.whisper-card:hover .whisper-text   { color: var(--bg); }
-.whisper-number {
-  font-family: var(--font-serif);
-  font-style:italic; font-weight:300;
-  font-size:13px; letter-spacing:.1em;
-  color: var(--sage);
-  display:block; margin-bottom:14px;
-  transition: color .35s ease;
-}
-.whisper-text {
-  font-family: var(--font-serif);
-  font-style:italic; font-weight:300;
-  font-size:17px; line-height:1.6;
-  color: var(--ink-mid);
-  transition: color .35s ease;
-}
-
-.problema-close {
-  margin-top:56px;
-  text-align:center;
-}
-.problema-close p {
-  font-family: var(--font-serif);
-  font-style:italic; font-weight:300;
-  font-size: clamp(18px, 2.5vw, 24px);
-  color: var(--ink-mid);
-  line-height:1.6;
-}
-.problema-close strong { font-weight:400; color: var(--ink); }
-
-/* ═══════════════════════════════════════════════════════════
-   OUTCOMES — A VIDA DEPOIS
-═══════════════════════════════════════════════════════════ */
-#outcomes {
-  background: var(--bg);
-}
-.outcomes-grid {
-  display:grid;
-  grid-template-columns: repeat(3,1fr);
-  gap:1px;
-  background: var(--rule);
-  border:1px solid var(--rule);
-  margin-top:56px;
-}
-.outcome-card {
-  padding:52px 40px;
-  background: var(--bg);
-}
-.outcome-numeral {
-  font-family: var(--font-serif);
-  font-style:italic; font-weight:300;
-  font-size:clamp(48px,5vw,64px);
-  color: oklch(88% 0.01 90);
-  line-height:1; margin-bottom:20px;
-}
-.outcome-title {
-  font-family: var(--font-serif);
-  font-weight:300;
-  font-size:clamp(20px, 2.5vw, 26px);
-  color: var(--ink);
-  margin-bottom:14px;
-  line-height:1.2;
-}
-.outcome-body {
-  font-family: var(--font-sans);
-  font-weight:300; font-size:15px;
-  color: var(--ink-soft);
-  line-height:1.7;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   CASO REAL — JOANA
-═══════════════════════════════════════════════════════════ */
-#caso {
-  background: var(--bg-alt);
-}
-.caso-header {
-  max-width:720px;
-  margin-bottom:56px;
-}
-.caso-layout {
-  display:grid;
-  grid-template-columns: 1fr 340px;
-  gap:56px;
-  align-items:start;
-}
-
-/* Lab Table */
-.lab-table-wrap {
-  overflow-x:auto;
-}
-.lab-table {
-  width:100%; border-collapse:collapse;
-  font-family: var(--font-sans);
-}
-.lab-table thead tr {
-  background: var(--ink);
-  color: var(--bg);
-}
-.lab-table thead th {
-  padding:12px 16px;
-  font-size:9.5px; font-weight:400;
-  letter-spacing:.32em; text-transform:uppercase;
-  text-align:left;
-}
-.lab-table thead th:not(:first-child) { text-align:right; }
-
-.lab-table tbody tr {
-  border-bottom:1px solid var(--rule-soft);
-}
-.lab-table tbody tr:hover { background:oklch(96% 0.01 90); }
-.lab-table th.row-header {
-  background: oklch(96% 0.01 90);
-  padding:10px 16px;
-  font-size:9.5px; font-weight:400;
-  letter-spacing:.28em; text-transform:uppercase;
-  color: var(--sage);
-  text-align:left; font-family: var(--font-sans);
-}
-.lab-table td {
-  padding:14px 16px;
-  font-size:13px; font-weight:400;
-  text-align:right;
-}
-.lab-table td.marker-name {
-  font-family: var(--font-serif);
-  font-size:15px; font-weight:400;
-  color: var(--ink);
-  text-align:left;
-}
-.flag {
-  display:inline-block;
-  font-size:9px; font-weight:400;
-  letter-spacing:.12em; text-transform:uppercase;
-  padding:3px 8px;
-}
-.flag--high, .flag--low {
-  background: oklch(93% 0.025 30);
-  color: oklch(42% 0.12 30);
-}
-.flag--descida {
-  background: var(--gold-pale);
-  color: oklch(45% 0.08 75);
-}
-
-/* Resultado box */
-.caso-result {
-  background: var(--ink);
-  color: var(--bg);
-  padding:36px 32px;
-}
-.caso-result__label {
-  font-family: var(--font-sans);
-  font-size:9.5px; font-weight:400;
-  letter-spacing:.36em; text-transform:uppercase;
-  color: var(--gold-soft);
-  margin-bottom:20px;
-}
-.caso-result__metric {
-  display:flex; justify-content:space-between; align-items:baseline;
-  padding:10px 0; border-bottom:1px solid rgba(248,246,241,.1);
-}
-.caso-result__metric:last-child { border-bottom:none; }
-.caso-result__key {
-  font-family: var(--font-sans);
-  font-size:12px; font-weight:300; color:rgba(248,246,241,.65);
-}
-.caso-result__val {
-  font-family: var(--font-serif);
-  font-weight:300; font-size:17px;
-  color: var(--bg);
-}
-.caso-result__val .arrow {
-  color: var(--gold-soft); font-size:13px; margin-right:4px;
-}
-
-/* Cascata clínica */
-.cascata {
-  grid-column:1 / -1;
-  background: var(--ink);
-  padding:52px 56px;
-  margin-top:24px;
-}
-.cascata__label {
-  font-family: var(--font-sans);
-  font-size:9.5px; font-weight:400;
-  letter-spacing:.36em; text-transform:uppercase;
-  color: var(--gold-soft);
-  margin-bottom:28px;
-}
-.cascata__text {
-  font-family: var(--font-serif);
-  font-style:italic; font-weight:300;
-  font-size: clamp(15px, 1.8vw, 19px);
-  line-height:1.8;
-  color: var(--bg);
-}
-.cascata__text em { color: var(--gold-soft); font-style:normal; }
-
-/* Protocol phases */
-.protocol {
-  margin-top:56px;
-}
-.protocol__label {
-  font-family: var(--font-sans);
-  font-size:9.5px; font-weight:400;
-  letter-spacing:.36em; text-transform:uppercase;
-  color: var(--sage);
-  margin-bottom:24px;
-}
-.protocol-phases {
-  display:grid; gap:1px;
-  background: var(--rule); border:1px solid var(--rule);
-}
-.phase {
-  display:grid;
-  grid-template-columns: 72px 1fr;
-  background: var(--bg-alt);
-  padding:28px 32px;
-  gap:24px; align-items:start;
-}
-.phase__num {
-  font-family: var(--font-serif);
-  font-style:italic; font-weight:300;
-  font-size:40px; line-height:1;
-  color: var(--sage);
-}
-.phase__title {
-  font-family: var(--font-serif);
-  font-weight:300; font-size:19px;
-  color: var(--ink); margin-bottom:6px;
-}
-.phase__body {
-  font-family: var(--font-sans);
-  font-weight:300; font-size:14px;
-  color: var(--ink-soft); line-height:1.65;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   REVEAL — DARK SECTION
-═══════════════════════════════════════════════════════════ */
-#programa {
-  background: var(--ink);
-  text-align:center;
-  padding: var(--section-v) var(--section-h);
-}
-.reveal-alpha {
-  font-family: var(--font-serif);
-  font-style:italic; font-weight:300;
-  font-size: clamp(56px, 9vw, 120px);
-  color: var(--gold);
-  line-height:1; display:block;
-  margin-bottom:8px;
-}
-.reveal-title {
-  font-family: var(--font-serif);
-  font-weight:300;
-  font-size: clamp(32px, 5vw, 60px);
-  letter-spacing:.06em; text-transform:uppercase;
-  color: var(--bg);
-  margin-bottom:32px;
-}
-.reveal-etymology {
-  font-family: var(--font-sans);
-  font-size:11px; font-weight:400;
-  letter-spacing:.28em; text-transform:uppercase;
-  color: rgba(248,246,241,.35);
-  margin-bottom:36px;
-}
-.reveal-body {
-  font-family: var(--font-serif);
-  font-style:italic; font-weight:300;
-  font-size: clamp(17px, 2.2vw, 23px);
-  line-height:1.65;
-  color: rgba(248,246,241,.75);
-  max-width:660px;
-  margin:0 auto 52px;
-}
-.reveal-price {
-  display:inline-flex; align-items:baseline; gap:8px;
-  margin-bottom:48px;
-}
-.reveal-price__amount {
-  font-family: var(--font-serif);
-  font-weight:300;
-  font-size: clamp(48px,6vw,72px);
-  color: var(--bg);
-}
-.reveal-price__period {
-  font-family: var(--font-sans);
-  font-size:13px; font-weight:300;
-  letter-spacing:.18em; text-transform:uppercase;
-  color: rgba(248,246,241,.5);
-}
-
-/* ═══════════════════════════════════════════════════════════
-   INSIDE-OUT — 3 CAMADAS
-═══════════════════════════════════════════════════════════ */
-#incluido {
-  background: var(--bg);
-}
-.camadas-grid {
-  display:grid;
-  grid-template-columns: repeat(3,1fr);
-  gap:1px; background: var(--rule);
-  border:1px solid var(--rule);
-  margin-top:56px;
-}
-.camada-card {
-  padding:48px 36px;
-  background: var(--bg);
-}
-.camada-num {
-  font-family: var(--font-sans);
-  font-size:9.5px; font-weight:400;
-  letter-spacing:.32em; text-transform:uppercase;
-  color: var(--sage);
-  margin-bottom:20px;
-}
-.camada-title {
-  font-family: var(--font-serif);
-  font-weight:300; font-size:clamp(20px,2.5vw,26px);
-  color: var(--ink); margin-bottom:16px;
-  line-height:1.2;
-}
-.camada-items {
-  list-style:none;
-  display:flex; flex-direction:column; gap:8px;
-}
-.camada-items li {
-  font-family: var(--font-sans);
-  font-weight:300; font-size:14px;
-  color: var(--ink-soft);
-  padding:8px 0;
-  border-bottom:1px solid var(--rule-soft);
-  display:flex; align-items:center; gap:10px;
-}
-.camada-items li::before {
-  content:''; display:block;
-  width:5px; height:1px;
-  background: var(--sage); flex-shrink:0;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   ORBITAL — 10 PILARES
-═══════════════════════════════════════════════════════════ */
-#orbital-section {
-  background: var(--sage-deep);
-  padding: var(--section-v) var(--section-h);
-  overflow:hidden;
-  position:relative;
-}
-#orbital-section .eyebrow { color: var(--gold-soft); }
-#orbital-section .eyebrow::before { background: var(--gold-soft); }
-#orbital-section h2 {
-  font-family: var(--font-serif);
-  font-weight:300;
-  font-size: clamp(28px, 4vw, 48px);
-  color: var(--bg);
-  margin-bottom:8px;
-}
-#orbital-section p {
-  font-family: var(--font-sans);
-  font-weight:300; font-size:15px;
-  color: rgba(248,246,241,.6);
-  max-width:420px;
-}
-
-.orbital-layout {
-  display:grid;
-  grid-template-columns:1fr 560px;
-  gap:72px; align-items:center;
-  margin-top:56px;
-}
-.orbital-canvas-wrap {
-  position:relative;
-  width:560px; height:560px; flex-shrink:0;
-}
-#orbital-canvas {
-  width:100%; height:100%;
-}
-.orbital-hint {
-  text-align:center; margin-top:16px;
-  font-family: var(--font-sans);
-  font-size:9.5px; font-weight:400;
-  letter-spacing:.24em; text-transform:uppercase;
-  color: rgba(248,246,241,.3);
-}
-
-/* Node info card */
-#orbital-info {
-  position:absolute; bottom:60px; right:-20px;
-  width:220px;
-  background: oklch(18% 0.008 90 / .96);
-  border:1px solid rgba(197,164,106,.35);
-  padding:24px;
-  opacity:0; pointer-events:none;
-  transition: opacity .3s ease, transform .3s ease;
-  transform: translateY(8px);
-}
-#orbital-info.visible {
-  opacity:1; pointer-events:auto;
-  transform: translateY(0);
-}
-#orbital-info__title {
-  font-family: var(--font-serif);
-  font-weight:300; font-size:16px;
-  color: var(--bg); margin-bottom:6px;
-}
-#orbital-info__tag {
-  font-family: var(--font-sans);
-  font-size:9.5px; font-weight:400;
-  letter-spacing:.24em; text-transform:uppercase;
-  color: var(--gold-soft);
-}
-
-/* ═══════════════════════════════════════════════════════════
-   SERVIÇOS — 10 PILARES GRID
-═══════════════════════════════════════════════════════════ */
-#servicos {
-  background: var(--bg-alt);
-}
-.servicos-header {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:56px; align-items:end;
-  margin-bottom:56px;
-}
-.maya-badge {
-  background: var(--sage-tint);
-  border:1px solid oklch(85% 0.03 160);
-  padding:28px 32px;
-}
-.maya-badge__label {
-  font-family: var(--font-sans);
-  font-size:9px; font-weight:400;
-  letter-spacing:.36em; text-transform:uppercase;
-  color: var(--sage-deep); margin-bottom:8px;
-}
-.maya-badge__title {
-  font-family: var(--font-serif);
-  font-weight:300; font-size:22px;
-  color: var(--ink); margin-bottom:6px;
-}
-.maya-badge__body {
-  font-family: var(--font-sans);
-  font-weight:300; font-size:13px;
-  color: var(--ink-soft); line-height:1.6;
-}
-
-.pilares-grid {
-  display:grid;
-  grid-template-columns: repeat(2, 1fr);
-  background: var(--rule);
-  border:1px solid var(--rule);
-  gap:1px;
-}
-.pilar-item {
-  background: var(--bg-alt);
-  padding:32px 36px;
-  display:grid;
-  grid-template-columns: 72px 1fr;
-  gap:20px; align-items:start;
-}
-.pilar-item--featured {
-  background: var(--ink);
-}
-.pilar-item--featured .pilar-numeral { color: rgba(197,164,106,.35); }
-.pilar-item--featured .pilar-name    { color: var(--bg); }
-.pilar-item--featured .pilar-tag     { color: var(--gold-soft); }
-
-.pilar-numeral {
-  font-family: var(--font-serif);
-  font-style:italic; font-weight:300;
-  font-size: clamp(36px,4vw,52px); line-height:1;
-  color: oklch(86% 0.01 90);
-}
-.pilar-name {
-  font-family: var(--font-sans);
-  font-weight:500; font-size:15px;
-  color: var(--ink); margin-bottom:6px;
-  line-height:1.3;
-}
-.pilar-tag {
-  font-family: var(--font-sans);
-  font-size:9.5px; font-weight:400;
-  letter-spacing:.28em; text-transform:uppercase;
-  color: var(--sage);
-}
-
-/* ═══════════════════════════════════════════════════════════
-   OBJEÇÕES
-═══════════════════════════════════════════════════════════ */
-#objecoes {
-  background: var(--bg);
-}
-.objecoes-grid {
-  display:grid;
-  grid-template-columns: repeat(3,1fr);
-  gap:1px; background: var(--rule);
-  border:1px solid var(--rule);
-  margin-top:56px;
-}
-.objecao-card {
-  padding:44px 36px;
-  background: var(--bg);
-}
-.objecao-q {
-  font-family: var(--font-serif);
-  font-style:italic; font-weight:300;
-  font-size: clamp(16px,1.8vw,20px);
-  color: var(--ink); margin-bottom:20px;
-  line-height:1.45;
-}
-.objecao-a {
-  font-family: var(--font-sans);
-  font-weight:300; font-size:14px;
-  color: var(--ink-soft); line-height:1.7;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   TESTEMUNHOS
-═══════════════════════════════════════════════════════════ */
-#testimonials {
-  background: var(--bg-alt);
-}
-.testimonials-grid {
-  display:grid;
-  grid-template-columns: repeat(3,1fr);
-  gap:1px; background: var(--rule);
-  border:1px solid var(--rule);
-  margin-top:56px;
-}
-.testimonial-card {
-  padding:44px 36px;
-  background: var(--bg-alt);
-}
-.testimonial-stars {
-  display:flex; gap:3px; margin-bottom:20px;
-}
-.testimonial-stars span {
-  font-size:12px; color: var(--gold);
-}
-.testimonial-text {
-  font-family: var(--font-serif);
-  font-style:italic; font-weight:300;
-  font-size: clamp(15px,1.6vw,18px);
-  color: var(--ink-mid);
-  line-height:1.65; margin-bottom:24px;
-}
-.testimonial-author {
-  font-family: var(--font-sans);
-  font-size:10px; font-weight:400;
-  letter-spacing:.26em; text-transform:uppercase;
-  color: var(--sage);
-}
-
-/* Marquee */
-.marquee-wrap {
-  overflow:hidden; border-top:1px solid var(--rule);
-  margin-top:72px; padding:24px 0;
-}
-.marquee-track {
-  display:flex; gap:56px;
-  animation: marqueeScroll 28s linear infinite;
-  width:max-content;
-}
-@keyframes marqueeScroll {
-  from { transform:translateX(0); }
-  to   { transform:translateX(-50%); }
-}
-.marquee-item {
-  font-family: var(--font-serif);
-  font-style:italic; font-weight:300;
-  font-size:18px; color: var(--ink-mid);
-  white-space:nowrap; flex-shrink:0;
-}
-.marquee-item span {
-  color: var(--gold); margin:0 12px;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   CTA FINAL
-═══════════════════════════════════════════════════════════ */
-#cta {
-  background: var(--ink);
-  text-align:center;
-}
-.cta-alpha {
-  font-family: var(--font-serif);
-  font-style:italic; font-weight:300;
-  font-size:clamp(36px,6vw,80px);
-  color: var(--gold); display:block;
-  line-height:1; margin-bottom:8px;
-}
-.cta-title {
-  font-family: var(--font-serif);
-  font-weight:300;
-  font-size: clamp(30px, 4.5vw, 56px);
-  color: var(--bg); letter-spacing:-.01em;
-  line-height:1.1; margin-bottom:24px;
-}
-.cta-sub {
-  font-family: var(--font-serif);
-  font-style:italic; font-weight:300;
-  font-size: clamp(16px, 2vw, 20px);
-  color: rgba(248,246,241,.6);
-  max-width:540px; margin:0 auto 52px;
-  line-height:1.6;
-}
-.cta-actions {
-  display:flex; flex-wrap:wrap;
-  align-items:center; justify-content:center;
-  gap:24px; margin-bottom:48px;
-}
-.cta-fine {
-  font-family: var(--font-sans);
-  font-size:12px; font-weight:300;
-  color: rgba(248,246,241,.35);
-  letter-spacing:.08em;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════════════════════════ */
-footer {
-  background: var(--footer-bg);
-  padding:56px var(--section-h) 36px;
-  color: rgba(248,246,241,.5);
-}
-.footer-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:48px;
-  max-width: var(--container); margin:0 auto;
-  padding-bottom:48px;
-  border-bottom:1px solid rgba(248,246,241,.08);
-}
-.footer-brand {
-  font-family: var(--font-serif);
-  font-weight:300; font-size:24px;
-  letter-spacing:.1em; text-transform:uppercase;
-  color: var(--bg); margin-bottom:12px;
-}
-.footer-brand span { font-style:italic; color:var(--gold); margin-right:6px; }
-.footer-tagline {
-  font-family: var(--font-serif);
-  font-style:italic; font-weight:300;
-  font-size:13px; line-height:1.6;
-  color: rgba(248,246,241,.4);
-}
-.footer-heading {
-  font-family: var(--font-sans);
-  font-size:9.5px; font-weight:400;
-  letter-spacing:.32em; text-transform:uppercase;
-  color: rgba(248,246,241,.3);
-  margin-bottom:20px;
-}
-.footer-links {
-  list-style:none;
-  display:flex; flex-direction:column; gap:12px;
-}
-.footer-links a {
-  font-family: var(--font-sans);
-  font-size:13px; font-weight:300;
-  color: rgba(248,246,241,.55);
-  transition: color .2s ease;
-}
-.footer-links a:hover { color: rgba(248,246,241,.9); }
-.footer-bottom {
-  max-width: var(--container); margin:0 auto;
-  display:flex; justify-content:space-between; align-items:center;
-  padding-top:28px;
-  font-family: var(--font-sans);
-  font-size:11px; font-weight:300;
-}
-.footer-alpha-deco {
-  font-family: var(--font-serif);
-  font-style:italic;
-  font-size:80px; line-height:1;
-  color: rgba(248,246,241,.04);
-  position:absolute; right:var(--section-h); bottom:24px;
-  pointer-events:none; user-select:none;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   POPUP
-═══════════════════════════════════════════════════════════ */
-.popup-overlay {
-  position:fixed; inset:0; z-index:9000;
-  background: rgba(42,41,38,.65);
-  backdrop-filter:blur(4px);
-  display:flex; align-items:center; justify-content:center;
-  padding:24px;
-  opacity:0; pointer-events:none;
-  transition: opacity .35s ease;
-}
-.popup-overlay.open {
-  opacity:1; pointer-events:auto;
-}
-.popup {
-  background: var(--bg);
-  max-width:520px; width:100%;
-  padding:56px 52px;
-  position:relative;
-  transform: translateY(20px);
-  transition: transform .35s ease;
-}
-.popup-overlay.open .popup { transform:translateY(0); }
-.popup-close {
-  position:absolute; top:18px; right:18px;
-  font-size:20px; color:var(--ink-mid);
-  transition: color .2s ease; padding:4px;
-}
-.popup-close:hover { color:var(--ink); }
-.popup-alpha {
-  font-family: var(--font-serif);
-  font-style:italic; font-weight:300;
-  font-size:36px; color:var(--gold);
-  line-height:1; margin-bottom:4px;
-}
-.popup-title {
-  font-family: var(--font-serif);
-  font-weight:300;
-  font-size:clamp(22px,3.5vw,30px);
-  color:var(--ink); line-height:1.2; margin-bottom:16px;
-}
-.popup-body {
-  font-family: var(--font-serif);
-  font-style:italic; font-weight:300;
-  font-size:16px; color:var(--ink-mid);
-  line-height:1.6; margin-bottom:32px;
-}
-.popup-cta {
-  display:flex; gap:16px; flex-wrap:wrap;
-}
-.popup-dismiss {
-  font-family: var(--font-sans);
-  font-size:10px; font-weight:400;
-  letter-spacing:.22em; text-transform:uppercase;
-  color:var(--ink-soft);
-  border-bottom:1px solid var(--rule); padding-bottom:1px;
-  cursor:pointer; transition:color .2s ease;
-  margin-top:20px; display:inline-block;
-}
-.popup-dismiss:hover { color:var(--ink); }
-
-/* ═══════════════════════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════════════════════ */
-@media (max-width: 960px) {
-  .nav-links, .nav-cta { display:none; }
-  .hamburger { display:flex; }
-  .hero-stats { grid-template-columns:repeat(2,1fr); }
-  .caso-layout { grid-template-columns:1fr; }
-  .orbital-layout { grid-template-columns:1fr; }
-  .orbital-canvas-wrap { width:100%; max-width:480px; height:480px; margin:0 auto; }
-  .outcomes-grid,
-  .camadas-grid  { grid-template-columns:1fr 1fr; }
-  .servicos-header { grid-template-columns:1fr; }
-  .pilares-grid  { grid-template-columns:1fr; }
-}
-@media (max-width: 680px) {
-  .outcomes-grid,
-  .camadas-grid,
-  .objecoes-grid,
-  .testimonials-grid { grid-template-columns:1fr; }
-  .footer-grid    { grid-template-columns:1fr; gap:36px; }
-  .hero-stats { grid-template-columns:repeat(2,1fr); }
-  .cascata { padding:36px 28px; }
-  .pilar-item { grid-template-columns:52px 1fr; }
-  .popup { padding:40px 32px; }
+/* RESPONSIVE */
+@media(max-width:960px){
+  .nav-links{display:none}
+  #hamburger{display:flex}
+  .section-inner{padding:0 28px}
+  .hero-content{padding:0 28px 52px}
+  .hero-cta-wrap{right:28px;bottom:52px}
+  .outcomes-grid,.camadas-grid{grid-template-columns:1fr;gap:48px}
+  .outcome-col,.camada-col{padding:0!important;border-right:none!important;border-bottom:1px solid var(--rule);padding-bottom:40px!important}
+  .outcome-col:last-child,.camada-col:last-child{border-bottom:none}
+  .outcome-col{padding-top:0!important}
+  .caso-split{grid-template-columns:1fr;gap:48px}
+  .resultado-box{grid-template-columns:1fr 1fr}
+  .phases-grid{grid-template-columns:1fr;gap:40px}
+  .testi-grid{grid-template-columns:1fr;gap:32px}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .orbital-inner{grid-template-columns:1fr}
+  #orbital-canvas{max-width:100%;height:auto}
+  .pilar-row{grid-template-columns:52px 1fr auto}
+  .pilar-tag{display:none}
+}
+@media(max-width:600px){
+  #nav{padding:0 20px}
+  .section-inner{padding:0 20px}
+  .hero-content{padding:0 20px 44px}
+  .hero-cta-wrap{right:20px;bottom:44px}
+  .alpha-symbol{font-size:5rem}
+  .resultado-box{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+  #popup-box{padding:40px 28px}
 }
 </style>
 </head>
 <body>
 
-<!-- CURSOR -->
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
-<!-- PROGRESS BAR -->
-<div id="progress-bar"></div>
-
-<!-- ─── POPUP ──────────────────────────────────────────────── -->
-<div class="popup-overlay" id="popup" role="dialog" aria-modal="true">
-  <div class="popup">
-    <button class="popup-close" id="popupClose" aria-label="Fechar">✕</button>
-    <div class="popup-alpha">α</div>
-    <h2 class="popup-title">Tens sintomas que ninguém soube explicar?</h2>
-    <p class="popup-body">Faz o quiz gratuito da Tríade Hormonal — 3 minutos, 12 perguntas. Descobre onde o teu padrão bioquímico pode estar a falhar.</p>
-    <div class="popup-cta">
-      <a href="https://catarina1979.github.io/quiz/?utm_source=aletheia_landing&utm_medium=popup&utm_content=exit_intent" class="btn btn--filled" target="_blank" rel="noopener">Fazer o quiz grátis →</a>
-    </div>
-    <button class="popup-dismiss" id="popupDismiss">Continuar a ler</button>
-  </div>
+<!-- ANNOUNCE BAR -->
+<div id="announce-bar">
+  Programa Aletheia &middot; Próxima abertura de vagas &middot; <a href="mailto:info@catarinaveiga.com?subject=Aletheia%20%E2%80%94%20Quero%20fazer%20parte%20do%20programa">Entrar em lista de espera &rarr;</a>
 </div>
 
-<!-- ─── ANNOUNCE BAR ─────────────────────────────────────── -->
-<div class="announce-bar" id="announceBar" role="banner">
-  <span class="announce-bar__dot"></span>
-  <span>Próximas vagas limitadas</span>
-  <a href="https://catarina1979.github.io/quiz/" class="announce-bar__link" target="_blank" rel="noopener">Quiz gratuito →</a>
-  <button class="announce-bar__close" id="announceClose" aria-label="Fechar barra">✕</button>
-</div>
-
-<!-- ─── NAV ──────────────────────────────────────────────── -->
-<nav id="mainNav">
-  <a href="#hero" class="nav-logo"><span>α</span>Aletheia</a>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Aletheia</a>
   <ul class="nav-links">
-    <li><a href="#problema">O Problema</a></li>
-    <li><a href="#caso">Caso Real</a></li>
-    <li><a href="#incluido">O Método</a></li>
+    <li><a href="#mission">Missão</a></li>
+    <li><a href="#outcomes">Resultados</a></li>
+    <li><a href="#protocol">Protocolo</a></li>
     <li><a href="#servicos">Programa</a></li>
+    <li><a href="mailto:info@catarinaveiga.com?subject=Aletheia%20%E2%80%94%20Quero%20fazer%20parte%20do%20programa" class="nav-cta">Fala comigo</a></li>
   </ul>
-  <a href="mailto:info@catarinaveiga.com?subject=Aletheia%20—%20Quero%20fazer%20parte%20do%20programa" class="nav-cta btn btn--filled">Candidatar →</a>
-  <button class="hamburger" id="hamburger" aria-label="Menu">
+  <button id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- Mobile menu -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#problema" class="mobile-link">O Problema</a>
-  <a href="#caso"     class="mobile-link">Caso Real</a>
-  <a href="#incluido" class="mobile-link">O Método</a>
-  <a href="#servicos" class="mobile-link">Programa</a>
-  <a href="mailto:info@catarinaveiga.com?subject=Aletheia%20—%20Quero%20fazer%20parte%20do%20programa" class="mobile-link">Candidatar</a>
+<!-- MOBILE MENU -->
+<div id="mobile-menu">
+  <a href="#mission" onclick="closeMobileMenu()">Missão</a>
+  <a href="#outcomes" onclick="closeMobileMenu()">Resultados</a>
+  <a href="#protocol" onclick="closeMobileMenu()">Protocolo</a>
+  <a href="#servicos" onclick="closeMobileMenu()">Programa</a>
+  <a href="mailto:info@catarinaveiga.com?subject=Aletheia%20%E2%80%94%20Quero%20fazer%20parte%20do%20programa">Fala comigo</a>
+  <a href="https://wa.me/351937046132">WhatsApp</a>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════
-     HERO
-════════════════════════════════════════════════════════ -->
+<!-- HERO -->
 <section id="hero">
-  <div class="hero-eyebrow">Health Precision Program</div>
-  <div class="hero-alpha">α</div>
-  <h1 class="hero-wordmark">Aletheia</h1>
-  <div class="hero-divider"></div>
-  <p class="hero-tagline">
-    <em>"Exames normais. Sintomas reais. Nenhuma resposta.<br>
-    Há uma explicação bioquímica. E há um caminho."</em>
-  </p>
-  <div class="hero-actions">
-    <a href="#programa" class="btn btn--filled">Conhece o programa →</a>
-    <a href="#caso"     class="btn btn--ghost">Caso real</a>
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Dra. Catarina Veiga &middot; Medicina Funcional de Precisão</span>
+    <span id="hero-wordmark">ALETHEIA</span>
+    <p class="hero-tagline">A verdade que o teu sangue já conhece.</p>
   </div>
+  <div class="hero-cta-wrap">
+    <a href="mailto:info@catarinaveiga.com?subject=Aletheia%20%E2%80%94%20Quero%20fazer%20parte%20do%20programa" class="hero-cta">Conhece o programa &rarr;</a>
+  </div>
+</section>
 
-  <div class="hero-stats fade-up">
-    <div class="hero-stat">
-      <span class="hero-stat__number" data-count="20">0</span>
-      <span class="hero-stat__label">Anos de prática</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat__number" data-count-decimal="4.8">0</span>
-      <span class="hero-stat__label">★ Google</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat__number" data-count="500">0</span>
-      <span class="hero-stat__label">Mulheres acompanhadas</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat__number" data-count="66">0</span>
-      <span class="hero-stat__label">Biomarcadores</span>
+<!-- 01 MISSION -->
+<section id="mission">
+  <div class="section-inner">
+    <span class="eyebrow fade-up">Propósito</span>
+    <p class="mission-statement fade-up">
+      Medicina de precisão para mulheres que funcionam &mdash;<br>
+      <em>mas que já não se reconhecem.</em>
+    </p>
+    <div class="mission-stats fade-up">
+      <span class="stat" data-count="20">20</span><span>&nbsp;anos</span>
+      <span class="sep">&middot;</span>
+      <span class="stat" data-count="500">500</span><span>+ mulheres</span>
+      <span class="sep">&middot;</span>
+      <span class="stat" data-count="66">66</span><span>&nbsp;biomarcadores</span>
+      <span class="sep">&middot;</span>
+      <span>4.8&#9733;</span>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════
-     PROBLEMA — 8 WHISPERS
-════════════════════════════════════════════════════════ -->
-<section id="problema" class="section section--alt">
-  <div class="container">
-    <div class="eyebrow fade-up">As palavras em voz baixa</div>
-    <h2 class="section-title fade-up">
-      Já disseste alguma<br>destas frases?
-    </h2>
-    <p class="section-lede fade-up">
-      Não às pessoas à tua volta.<br>A ti mesma.
-    </p>
-
-    <div class="whisper-grid">
-      <div class="whisper-card fade-up">
-        <span class="whisper-number">01</span>
-        <p class="whisper-text">"Eu não como nada de diferente e a barriga saiu do nada."</p>
-      </div>
-      <div class="whisper-card fade-up">
-        <span class="whisper-number">02</span>
-        <p class="whisper-text">"Ao final da tarde é como se alguém me tivesse desligado da ficha."</p>
-      </div>
-      <div class="whisper-card fade-up">
-        <span class="whisper-number">03</span>
-        <p class="whisper-text">"Acordo às 4 da manhã. Todos os dias. E depois não durmo mais."</p>
-      </div>
-      <div class="whisper-card fade-up">
-        <span class="whisper-number">04</span>
-        <p class="whisper-text">"A libido? Não existe. O meu corpo simplesmente não responde."</p>
-      </div>
-      <div class="whisper-card fade-up">
-        <span class="whisper-number">05</span>
-        <p class="whisper-text">"Esqueço palavras a meio da frase. Já me aconteceu em reuniões."</p>
-      </div>
-      <div class="whisper-card fade-up">
-        <span class="whisper-number">06</span>
-        <p class="whisper-text">"O cabelo. Cai no chuveiro, na almofada, quando passo a mão."</p>
-      </div>
-      <div class="whisper-card fade-up">
-        <span class="whisper-number">07</span>
-        <p class="whisper-text">"Faço os exames, a médica diz que está tudo bem. Como é que pode estar?"</p>
-      </div>
-      <div class="whisper-card fade-up">
-        <span class="whisper-number">08</span>
-        <p class="whisper-text">"Antes não era assim. E ninguém me sabe dizer porquê."</p>
-      </div>
-    </div>
-
-    <div class="problema-close fade-up">
-      <p>Se leu estas frases e alguma é sua —<br>
-      <strong>não está sozinha. E não está a inventar.</strong></p>
-    </div>
+<!-- 02 PROBLEMA -->
+<section id="problema">
+  <div class="section-inner">
+    <span class="eyebrow eyebrow-light fade-up">As palavras em voz baixa</span>
+    <h2 class="fade-up">Já disseste alguma<br>destas frases?</h2>
+    <ul class="whisper-list">
+      <li class="whisper-item fade-up">
+        <span class="whisper-num">01</span>
+        <span class="whisper-text">&ldquo;Eu não como nada de diferente e a barriga saiu do nada.&rdquo;</span>
+      </li>
+      <li class="whisper-item fade-up">
+        <span class="whisper-num">02</span>
+        <span class="whisper-text">&ldquo;Ao final da tarde é como se alguém me tivesse desligado da ficha.&rdquo;</span>
+      </li>
+      <li class="whisper-item fade-up">
+        <span class="whisper-num">03</span>
+        <span class="whisper-text">&ldquo;Acordo às 4 da manhã. Todos os dias. E depois não durmo mais.&rdquo;</span>
+      </li>
+      <li class="whisper-item fade-up">
+        <span class="whisper-num">04</span>
+        <span class="whisper-text">&ldquo;A libido? Não existe. O meu corpo simplesmente não responde.&rdquo;</span>
+      </li>
+      <li class="whisper-item fade-up">
+        <span class="whisper-num">05</span>
+        <span class="whisper-text">&ldquo;Esqueço palavras a meio da frase. Já me aconteceu em reuniões.&rdquo;</span>
+      </li>
+      <li class="whisper-item fade-up">
+        <span class="whisper-num">06</span>
+        <span class="whisper-text">&ldquo;O cabelo. Cai no chuveiro, na almofada, quando passo a mão.&rdquo;</span>
+      </li>
+      <li class="whisper-item fade-up">
+        <span class="whisper-num">07</span>
+        <span class="whisper-text">&ldquo;Faço os exames, a médica diz que está tudo bem. Como é que pode estar?&rdquo;</span>
+      </li>
+      <li class="whisper-item fade-up">
+        <span class="whisper-num">08</span>
+        <span class="whisper-text">&ldquo;Antes não era assim. E ninguém me sabe dizer porquê.&rdquo;</span>
+      </li>
+    </ul>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════
-     OUTCOMES — A VIDA DEPOIS
-════════════════════════════════════════════════════════ -->
-<section id="outcomes" class="section">
-  <div class="container">
-    <div class="eyebrow fade-up">O que vamos construir</div>
-    <h2 class="section-title fade-up">
-      A vida depois<br>de perceberes
-    </h2>
-    <p class="section-lede fade-up">
-      Não prometemos curas. Prometemos clareza —<br>
-      e um caminho bioquimicamente fundamentado.
-    </p>
-
+<!-- 03 OUTCOMES -->
+<section id="outcomes">
+  <div class="section-inner">
+    <span class="eyebrow fade-up">O que vamos construir</span>
+    <h2 class="fade-up">A vida depois de perceberes</h2>
     <div class="outcomes-grid">
-      <div class="outcome-card fade-up">
-        <div class="outcome-numeral">I</div>
-        <h3 class="outcome-title">Energia real</h3>
-        <p class="outcome-body">Acordar descansada. Ter combustível para o que importa ao final do dia. Deixar de depender da cafeína para funcionar.</p>
+      <div class="outcome-col fade-up">
+        <span class="outcome-roman">I.</span>
+        <h3>Energia real</h3>
+        <p>Não a de suplementos de manhã e colapso às três da tarde. A energia que nasce de um metabolismo funcional, de um intestino que absorve, de hormonas que comunicam. Sustentada, silenciosa, sua.</p>
       </div>
-      <div class="outcome-card fade-up">
-        <div class="outcome-numeral">II</div>
-        <h3 class="outcome-title">Cabeça clara</h3>
-        <p class="outcome-body">Pensamento nítido. Memória funcional. Foco que dura mais do que vinte minutos. A névoa levanta quando o bioquímico estabiliza.</p>
+      <div class="outcome-col fade-up">
+        <span class="outcome-roman">II.</span>
+        <h3>Cabeça clara</h3>
+        <p>Encontrar as palavras. Completar o pensamento. Estar presente na conversa. O brain fog não é inevitável &mdash; é um sinal que tem causa, tem nome, tem protocolo.</p>
+        <p style="margin-top:16px;font-family:var(--font-serif);font-style:italic;font-size:.9rem;color:var(--sage-deep)">O teu cérebro está inflamado, não preguiçoso.</p>
       </div>
-      <div class="outcome-card fade-up">
-        <div class="outcome-numeral">III</div>
-        <h3 class="outcome-title">Uma especialista que lê</h3>
-        <p class="outcome-body">Alguém que analisa os teus exames à luz de intervalos funcionais — não laboratoriais — e que escreve um plano à tua medida.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════
-     CASO REAL — JOANA
-════════════════════════════════════════════════════════ -->
-<section id="caso" class="section section--alt">
-  <div class="container">
-    <div class="eyebrow fade-up">Caso real · dados reais</div>
-    <div class="caso-header">
-      <h2 class="section-title fade-up">A Joana, 52 anos.<br>Exames "normais".</h2>
-      <p class="section-lede fade-up">
-        Peso a subir sem explicação. TSH "dentro do intervalo". Médico satisfeito.<br>
-        Joana, não.
-      </p>
-    </div>
-
-    <div class="caso-layout fade-up">
-      <div>
-        <div class="lab-table-wrap">
-          <table class="lab-table">
-            <thead>
-              <tr>
-                <th>Marcador</th>
-                <th>Valor</th>
-                <th>Lab normal</th>
-                <th>Funcional</th>
-                <th>Estado</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th class="row-header" colspan="5">Tiróide</th>
-              </tr>
-              <tr>
-                <td class="marker-name">TSH</td>
-                <td>3.2</td>
-                <td>0.4–4.5</td>
-                <td>1.0–2.0</td>
-                <td><span class="flag flag--high">Alto</span></td>
-              </tr>
-              <tr>
-                <td class="marker-name">T3 Livre</td>
-                <td>2.4</td>
-                <td>2.3–4.2</td>
-                <td>3.0–4.0</td>
-                <td><span class="flag flag--low">Baixo</span></td>
-              </tr>
-              <tr>
-                <th class="row-header" colspan="5">Depósitos / Vitaminas</th>
-              </tr>
-              <tr>
-                <td class="marker-name">Ferritina</td>
-                <td>28</td>
-                <td>15–300</td>
-                <td>60–90</td>
-                <td><span class="flag flag--low">Baixo</span></td>
-              </tr>
-              <tr>
-                <td class="marker-name">Vitamina D</td>
-                <td>24</td>
-                <td>20–100</td>
-                <td>50–80</td>
-                <td><span class="flag flag--low">Baixo</span></td>
-              </tr>
-              <tr>
-                <th class="row-header" colspan="5">Metabolismo / Hormonas</th>
-              </tr>
-              <tr>
-                <td class="marker-name">HOMA-IR</td>
-                <td>2.1</td>
-                <td>&lt; 2.5</td>
-                <td>&lt; 1.5</td>
-                <td><span class="flag flag--high">Alto</span></td>
-              </tr>
-              <tr>
-                <td class="marker-name">DHEA</td>
-                <td>1.4</td>
-                <td>0.5–10</td>
-                <td>3–10</td>
-                <td><span class="flag flag--low">Baixo</span></td>
-              </tr>
-              <tr>
-                <td class="marker-name">Estradiol</td>
-                <td>18</td>
-                <td>(varia)</td>
-                <td>—</td>
-                <td><span class="flag flag--descida">Descida</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="caso-result">
-        <div class="caso-result__label">Resultado · 6 meses</div>
-        <div class="caso-result__metric">
-          <span class="caso-result__key">Peso</span>
-          <span class="caso-result__val"><span class="arrow">↓</span>−9 kg</span>
-        </div>
-        <div class="caso-result__metric">
-          <span class="caso-result__key">TSH</span>
-          <span class="caso-result__val">1.7</span>
-        </div>
-        <div class="caso-result__metric">
-          <span class="caso-result__key">T3 Livre</span>
-          <span class="caso-result__val">3.4</span>
-        </div>
-        <div class="caso-result__metric">
-          <span class="caso-result__key">Ferritina</span>
-          <span class="caso-result__val">72</span>
-        </div>
-        <div class="caso-result__metric">
-          <span class="caso-result__key">HOMA-IR</span>
-          <span class="caso-result__val">1.2</span>
-        </div>
-        <div class="caso-result__metric">
-          <span class="caso-result__key">DHEA</span>
-          <span class="caso-result__val">4.8</span>
-        </div>
-        <div class="caso-result__metric">
-          <span class="caso-result__key">Sono</span>
-          <span class="caso-result__val">Reparador</span>
-        </div>
-        <div class="caso-result__metric">
-          <span class="caso-result__key">Ciclo</span>
-          <span class="caso-result__val">Regulado</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Cascata -->
-    <div class="cascata fade-up">
-      <div class="cascata__label">A cascata bioquímica</div>
-      <p class="cascata__text">
-        SIBO activo → beta-glucuronidase alta → estrogénio recircula → dominância estrogénica com estradiol baixo → progesterona colapsa → sono fragmentado → cortisol sobe → adrenal esgota → DHEA cai → conversão T4→T3 bloqueada → TSH sobe → metabolismo abranda → resistência insulínica instala-se → <em>ciclo fechado sobre si próprio.</em>
-      </p>
-    </div>
-
-    <!-- Protocol -->
-    <div class="protocol fade-up">
-      <div class="protocol__label">O protocolo · 3 fases</div>
-      <div class="protocol-phases">
-        <div class="phase">
-          <div class="phase__num">01</div>
-          <div>
-            <div class="phase__title">Investigação Profunda</div>
-            <p class="phase__body">ODX completo, DUTCH hormone panel, GI360, OAT. Mapeamento de 66 biomarcadores. Baseline clínica total.</p>
-          </div>
-        </div>
-        <div class="phase">
-          <div class="phase__num">02</div>
-          <div>
-            <div class="phase__title">Intervenção de Precisão</div>
-            <p class="phase__body">Plano terapêutico escrito com protocolos nutricionais, suplementação com timing clínico e suporte ao sistema nervoso.</p>
-          </div>
-        </div>
-        <div class="phase">
-          <div class="phase__num">03</div>
-          <div>
-            <div class="phase__title">Monitorização Contínua</div>
-            <p class="phase__body">Reavaliações mensais, ajuste de plano, dados biométricos de sono e HRV integrados. O protocolo evolui com o teu corpo.</p>
-          </div>
-        </div>
+      <div class="outcome-col fade-up">
+        <span class="outcome-roman">III.</span>
+        <h3>Uma especialista que lê</h3>
+        <p>Não um relatório de 14 páginas que termina em &ldquo;normal&rdquo;. Uma médica que cruza os teus dados com a tua história, que percebe o padrão, que te explica o que está a acontecer.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════
-     REVEAL — DARK
-════════════════════════════════════════════════════════ -->
-<section id="programa" class="section section--dark">
-  <div class="container--narrow" style="text-align:center;">
-    <div class="eyebrow fade-up" style="justify-content:center;">A verdade revelada</div>
-    <span class="reveal-alpha fade-up">α</span>
-    <h2 class="reveal-title fade-up">Aletheia</h2>
-    <p class="reveal-etymology fade-up">ἀλήθεια · alḗtheia · grego</p>
-    <p class="reveal-body fade-up">
-      "Aquilo que estava escondido e precisa de ser visto."<br>
-      O teu corpo não está a falhar. Está a comunicar.<br>
-      Aprendemos a ouvir.
-    </p>
-    <hr class="rule" style="border-color:rgba(248,246,241,.1); max-width:240px; margin:0 auto 48px;">
-    <div class="reveal-price fade-up">
-      <span class="reveal-price__amount">€199</span>
-      <span class="reveal-price__period">/ mês · tudo incluído</span>
-    </div>
-    <div class="fade-up">
-      <a href="mailto:info@catarinaveiga.com?subject=Aletheia%20—%20Quero%20fazer%20parte%20do%20programa" class="btn btn--gold">Quero fazer parte do programa →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════
-     3 CAMADAS
-════════════════════════════════════════════════════════ -->
-<section id="incluido" class="section">
-  <div class="container">
-    <div class="eyebrow fade-up">O método</div>
-    <h2 class="section-title fade-up">
-      Três camadas<br>de dados
-    </h2>
-    <p class="section-lede fade-up">
-      Porque um corpo não é uma spreadsheet.<br>
-      Precisamos de ver o quadro completo.
-    </p>
-
-    <div class="camadas-grid">
-      <div class="camada-card fade-up">
-        <div class="camada-num">01 · Biomarcadores</div>
-        <h3 class="camada-title">Laboratório<br>funcional</h3>
-        <ul class="camada-items">
-          <li>ODX — Relatório BioFuncional</li>
-          <li>DUTCH — painel hormonal</li>
-          <li>GI360 — microbioma</li>
-          <li>OAT — ácidos orgânicos</li>
-        </ul>
-      </div>
-      <div class="camada-card fade-up">
-        <div class="camada-num">02 · Biometria</div>
-        <h3 class="camada-title">Dados<br>fisiológicos</h3>
-        <ul class="camada-items">
-          <li>Sono — REM, N3, latência</li>
-          <li>HRV — variabilidade cardíaca</li>
-          <li>CGM — glicose contínua</li>
-          <li>Wearables integrados</li>
-        </ul>
-      </div>
-      <div class="camada-card fade-up">
-        <div class="camada-num">03 · Subjectivos</div>
-        <h3 class="camada-title">A tua<br>experiência</h3>
-        <ul class="camada-items">
-          <li>SF-36 — qualidade de vida</li>
-          <li>GAD-7 — ansiedade</li>
-          <li>PHQ-9 — humor</li>
-          <li>QEESI — sensibilidades</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════
-     ORBITAL — 10 PILARES
-════════════════════════════════════════════════════════ -->
-<section id="orbital-section" class="section">
-  <div class="container">
-    <div class="orbital-layout">
+<!-- 04 CASO REAL -->
+<section id="caso-real">
+  <div class="section-inner">
+    <span class="eyebrow fade-up">Caso real &middot; dados reais</span>
+    <h2 class="fade-up">A Joana, 52 anos.<br>Exames &ldquo;normais&rdquo;.</h2>
+    <div class="caso-split">
       <div class="fade-up">
-        <div class="eyebrow">Os 10 pilares</div>
-        <h2>O programa<br>por dentro</h2>
-        <p style="margin-top:16px;">Dez eixos de intervenção que funcionam em simultâneo — não em sequência.</p>
-        <p style="margin-top:32px; font-family:var(--font-serif); font-style:italic; font-size:16px; color:rgba(248,246,241,.5);">Clica num nó para explorar.</p>
+        <table class="lab-table">
+          <caption>Perfil analítico &middot; Joana M., 52 anos</caption>
+          <thead>
+            <tr>
+              <th>Marcador</th>
+              <th>Valor</th>
+              <th>Ref. Lab.</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>TSH</td><td>3.2 mU/L</td><td>0.4 &ndash; 4.5</td><td class="status-high">&#8593; Func. alta</td></tr>
+            <tr><td>T3 Livre</td><td>2.4 pg/mL</td><td>2.3 &ndash; 4.2</td><td class="status-low">&#8595; Func. baixo</td></tr>
+            <tr><td>Ferritina</td><td>28 ng/mL</td><td>15 &ndash; 300</td><td class="status-low">&#8595; Esgotada</td></tr>
+            <tr><td>Vitamina D</td><td>24 ng/mL</td><td>20 &ndash; 100</td><td class="status-low">&#8595; Insuficiente</td></tr>
+            <tr><td>HOMA-IR</td><td>2.1</td><td>0 &ndash; 2.5</td><td class="status-high">&#8593; Resistência</td></tr>
+            <tr><td>DHEA-S</td><td>1.4 µmol/L</td><td>0.5 &ndash; 10</td><td class="status-low">&#8595; Adrenal</td></tr>
+            <tr><td>Estradiol</td><td>18 pg/mL</td><td>&mdash;</td><td class="status-descent">&#8600; Em descida</td></tr>
+          </tbody>
+        </table>
       </div>
-      <div>
-        <div class="orbital-canvas-wrap">
-          <canvas id="orbital-canvas" width="560" height="560"></canvas>
-          <div id="orbital-info">
-            <div id="orbital-info__title">—</div>
-            <div id="orbital-info__tag">—</div>
+
+      <div class="spectrum-panel fade-up">
+        <h4>Mapa funcional &middot; posição relativa</h4>
+
+        <div class="spectrum-row">
+          <div class="spectrum-label">
+            <span class="spectrum-name">TSH</span>
+            <span class="spectrum-value">3.2 mU/L</span>
+          </div>
+          <div class="spectrum-bar-wrap">
+            <svg viewBox="0 0 300 10" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" y="3" width="300" height="4" rx="2" fill="rgba(180,180,180,0.15)"/>
+              <rect x="20" y="3" width="205" height="4" rx="2" fill="rgba(180,180,180,0.2)"/>
+              <rect x="50" y="2" width="50" height="6" rx="2" fill="rgba(94,122,108,0.55)"/>
+              <circle cx="160" cy="5" r="5" fill="rgba(200,80,60,0.9)"/>
+            </svg>
           </div>
         </div>
-        <p class="orbital-hint">↻ rotação automática · clica para pausar</p>
+
+        <div class="spectrum-row">
+          <div class="spectrum-label">
+            <span class="spectrum-name">T3 Livre</span>
+            <span class="spectrum-value">2.4 pg/mL</span>
+          </div>
+          <div class="spectrum-bar-wrap">
+            <svg viewBox="0 0 300 10" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" y="3" width="300" height="4" rx="2" fill="rgba(180,180,180,0.15)"/>
+              <rect x="138" y="3" width="114" height="4" rx="2" fill="rgba(180,180,180,0.2)"/>
+              <rect x="180" y="2" width="60" height="6" rx="2" fill="rgba(94,122,108,0.55)"/>
+              <circle cx="144" cy="5" r="5" fill="rgba(80,100,200,0.9)"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="spectrum-row">
+          <div class="spectrum-label">
+            <span class="spectrum-name">Ferritina</span>
+            <span class="spectrum-value">28 ng/mL</span>
+          </div>
+          <div class="spectrum-bar-wrap">
+            <svg viewBox="0 0 300 10" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" y="3" width="300" height="4" rx="2" fill="rgba(180,180,180,0.15)"/>
+              <rect x="15" y="3" width="285" height="4" rx="2" fill="rgba(180,180,180,0.2)"/>
+              <rect x="60" y="2" width="30" height="6" rx="2" fill="rgba(94,122,108,0.55)"/>
+              <circle cx="28" cy="5" r="5" fill="rgba(80,100,200,0.9)"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="spectrum-row">
+          <div class="spectrum-label">
+            <span class="spectrum-name">Vitamina D</span>
+            <span class="spectrum-value">24 ng/mL</span>
+          </div>
+          <div class="spectrum-bar-wrap">
+            <svg viewBox="0 0 300 10" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" y="3" width="300" height="4" rx="2" fill="rgba(180,180,180,0.15)"/>
+              <rect x="50" y="3" width="200" height="4" rx="2" fill="rgba(180,180,180,0.2)"/>
+              <rect x="125" y="2" width="75" height="6" rx="2" fill="rgba(94,122,108,0.55)"/>
+              <circle cx="60" cy="5" r="5" fill="rgba(80,100,200,0.9)"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="spectrum-row">
+          <div class="spectrum-label">
+            <span class="spectrum-name">HOMA-IR</span>
+            <span class="spectrum-value">2.1</span>
+          </div>
+          <div class="spectrum-bar-wrap">
+            <svg viewBox="0 0 300 10" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" y="3" width="300" height="4" rx="2" fill="rgba(180,180,180,0.15)"/>
+              <rect x="0" y="3" width="187" height="4" rx="2" fill="rgba(180,180,180,0.2)"/>
+              <rect x="0" y="2" width="112" height="6" rx="2" fill="rgba(94,122,108,0.55)"/>
+              <circle cx="157" cy="5" r="5" fill="rgba(200,80,60,0.9)"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="spectrum-row">
+          <div class="spectrum-label">
+            <span class="spectrum-name">DHEA-S</span>
+            <span class="spectrum-value">1.4 µmol/L</span>
+          </div>
+          <div class="spectrum-bar-wrap">
+            <svg viewBox="0 0 300 10" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" y="3" width="300" height="4" rx="2" fill="rgba(180,180,180,0.15)"/>
+              <rect x="12" y="3" width="238" height="4" rx="2" fill="rgba(180,180,180,0.2)"/>
+              <rect x="75" y="2" width="175" height="6" rx="2" fill="rgba(94,122,108,0.55)"/>
+              <circle cx="35" cy="5" r="5" fill="rgba(80,100,200,0.9)"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="spectrum-row">
+          <div class="spectrum-label">
+            <span class="spectrum-name">Estradiol</span>
+            <span class="spectrum-value">18 pg/mL &#8600;</span>
+          </div>
+          <div class="spectrum-bar-wrap">
+            <svg viewBox="0 0 300 10" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" y="3" width="300" height="4" rx="2" fill="rgba(180,180,180,0.15)"/>
+              <rect x="90" y="2" width="135" height="6" rx="2" fill="rgba(94,122,108,0.35)"/>
+              <circle cx="27" cy="5" r="5" fill="rgba(197,164,106,0.9)"/>
+            </svg>
+          </div>
+        </div>
+
+        <div style="margin-top:20px;display:flex;gap:20px;flex-wrap:wrap">
+          <span style="font-family:var(--font-sans);font-size:.7rem;color:var(--ink-soft);display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:16px;height:6px;background:rgba(180,180,180,.35);border-radius:2px"></span>Ref. laboratorial</span>
+          <span style="font-family:var(--font-sans);font-size:.7rem;color:var(--ink-soft);display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:16px;height:6px;background:rgba(94,122,108,.55);border-radius:2px"></span>Intervalo funcional</span>
+          <span style="font-family:var(--font-sans);font-size:.7rem;color:var(--ink-soft);display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:10px;height:10px;background:rgba(200,80,60,.9);border-radius:50%"></span>Alta</span>
+          <span style="font-family:var(--font-sans);font-size:.7rem;color:var(--ink-soft);display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:10px;height:10px;background:rgba(80,100,200,.9);border-radius:50%"></span>Baixa</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="resultado-box fade-up">
+      <div class="resultado-item">
+        <h5>6 meses depois</h5>
+        <p><span class="big-num" data-count="8">8</span>horas de sono contínuo pela primeira vez em 4 anos</p>
+      </div>
+      <div class="resultado-item">
+        <h5>Energia recuperada</h5>
+        <p><span class="big-num">&minus;6 kg</span>sem restrição calórica. Apenas equilíbrio hormonal.</p>
+      </div>
+      <div class="resultado-item">
+        <h5>Diagnóstico real</h5>
+        <p>Hipotiroidismo funcional + resistência insulínica pré-clínica + depleção adrenal. Tudo &ldquo;dentro do normal&rdquo;.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════
-     SERVIÇOS — 10 PILARES GRID
-════════════════════════════════════════════════════════ -->
-<section id="servicos" class="section section--alt">
-  <div class="container">
-    <div class="servicos-header">
+<!-- 05 CASCATA -->
+<section id="cascata">
+  <div class="section-inner">
+    <div class="cascata-intro fade-up">
+      <span class="eyebrow eyebrow-light">A cascata bioquímica</span>
+      <h2>Um dominó invisível</h2>
+      <p>Os teus sintomas não são aleatórios. São o fim de uma cadeia que começou muito antes &mdash; e que tem ponto de entrada.</p>
+    </div>
+    <div id="cascata-text">SIBO activo &rarr; beta-glucuronidase alta &rarr; estrogénio recircula &rarr; dominância estrogénica &rarr; progesterona colapsa &rarr; sono fragmentado &rarr; cortisol sobe &rarr; adrenal esgota &rarr; DHEA cai &rarr; conversão T4&rarr;T3 bloqueada &rarr; TSH sobe &rarr; metabolismo abranda &rarr; resistência insulínica instala-se &rarr; ciclo fechado sobre si próprio.</div>
+  </div>
+</section>
+
+<!-- 06 PROTOCOL -->
+<section id="protocol">
+  <div class="section-inner">
+    <span class="eyebrow fade-up">Estrutura</span>
+    <h2 class="fade-up">O protocolo &middot; 3 fases</h2>
+    <div class="phases-grid">
+      <div class="phase fade-up">
+        <span class="phase-num">01</span>
+        <h3>Investigação</h3>
+        <ul>
+          <li>Consulta de anamnese profunda (90 min)</li>
+          <li>Relatório BioFuncional ODX &mdash; 66 biomarcadores</li>
+          <li>Mapeamento da cascata hormonal e metabólica</li>
+          <li>Revisão do historial analítico anterior</li>
+          <li>Identificação dos pontos de entrada prioritários</li>
+        </ul>
+      </div>
+      <div class="phase fade-up">
+        <span class="phase-num">02</span>
+        <h3>Intervenção</h3>
+        <ul>
+          <li>Plano terapêutico escrito e documentado</li>
+          <li>Nutrição funcional evolutiva por fase</li>
+          <li>Suplementação activa com timing clínico</li>
+          <li>Regulação do sistema nervoso autónomo</li>
+          <li>Testes funcionais complementares (parceiro)</li>
+          <li>2 consultas MGF incluídas</li>
+        </ul>
+      </div>
+      <div class="phase fade-up">
+        <span class="phase-num">03</span>
+        <h3>Monitorização</h3>
+        <ul>
+          <li>App Aletheia &mdash; acompanhamento contínuo 24/7</li>
+          <li>Revisão analítica trimestral</li>
+          <li>Ajuste do protocolo por resposta clínica</li>
+          <li>Relatório de progressão mensal</li>
+          <li>Coordenação total entre especialistas</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 PROGRAMA REVEAL -->
+<section id="programa-reveal">
+  <div class="section-inner" style="text-align:center">
+    <span class="alpha-symbol fade-up">&alpha;</span>
+    <span class="programa-wordmark fade-up">ALETHEIA</span>
+    <span class="programa-etymology fade-up">&alpha;&lambda;&eta;&theta;&epsilon;&iota;&alpha; &middot; grego antigo &middot; &laquo;o que não está oculto&raquo;</span>
+    <span class="programa-tagline fade-up">&ldquo;A verdade que o teu corpo já sabia. Agora com dados.&rdquo;</span>
+    <span class="programa-price fade-up">
+      Programa mensal &middot; tudo incluído
+      <strong>&euro;199 / mês</strong>
+    </span>
+    <a href="mailto:info@catarinaveiga.com?subject=Aletheia%20%E2%80%94%20Quero%20fazer%20parte%20do%20programa" class="btn-gold fade-up">Quero fazer parte &rarr;</a>
+  </div>
+</section>
+
+<!-- 08 CAMADAS -->
+<section id="camadas">
+  <div class="section-inner">
+    <span class="eyebrow fade-up">Metodologia</span>
+    <h2 class="fade-up">O método &middot; 3 camadas de dados</h2>
+    <div class="camadas-grid">
+      <div class="camada-col fade-up">
+        <h3>Biomarcadores</h3>
+        <ul>
+          <li>66 biomarcadores ODX interpretados funcionalmente</li>
+          <li>Hormonas sexuais e adrenais</li>
+          <li>Tiróide completa (TSH, T3L, T4L, rT3, Ab)</li>
+          <li>Metabolismo da glicose e insulina</li>
+          <li>Inflamação sistémica (PCR-us, homocisteína)</li>
+          <li>Micronutrientes críticos (D, B12, ferro, zinco, magnésio)</li>
+          <li>Marcadores intestinais e de permeabilidade</li>
+        </ul>
+      </div>
+      <div class="camada-col fade-up">
+        <h3>Biometria</h3>
+        <ul>
+          <li>Variabilidade da frequência cardíaca (VFC)</li>
+          <li>Padrões de sono (arquitectura, fragmentação)</li>
+          <li>Temperatura corporal basal</li>
+          <li>Ciclo menstrual e fases hormonais</li>
+          <li>Actividade e recuperação</li>
+          <li>Pressão arterial e ritmo circadiano</li>
+        </ul>
+      </div>
+      <div class="camada-col fade-up">
+        <h3>Subjectivos</h3>
+        <ul>
+          <li>Diário de sintomas estruturado</li>
+          <li>Qualidade de energia ao longo do dia</li>
+          <li>Padrões alimentares e digestivos</li>
+          <li>Carga cognitiva e clareza mental</li>
+          <li>Ciclo de stress e recuperação percebida</li>
+          <li>Humor e drive motivacional</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 ORBITAL -->
+<section id="orbital">
+  <div class="section-inner">
+    <div class="orbital-inner">
+      <div class="orbital-text">
+        <span class="eyebrow">Sistema vivo</span>
+        <h2 class="fade-up">10 sistemas.<br>Uma só mulher.</h2>
+        <p class="fade-up">O teu corpo não funciona por departamentos. A tiróide fala com o cortisol. O cortisol fala com a progesterona. A progesterona fala com o sono. O sono fala com a insulina. Tratar um sem ver o sistema é tratar o eco, não a voz.</p>
+        <p id="orbital-info" style="margin-top:24px"></p>
+      </div>
       <div>
-        <div class="eyebrow fade-up">Tudo incluído</div>
-        <h2 class="section-title fade-up">Os 10 pilares<br>do Aletheia</h2>
-        <p class="section-lede fade-up">Um programa único.<br>Dez dimensões de cuidado.</p>
-      </div>
-      <div class="maya-badge fade-up">
-        <div class="maya-badge__label">Inteligência artificial</div>
-        <h3 class="maya-badge__title">MAYA</h3>
-        <p class="maya-badge__body">Agente de IA nutrição funcional, disponível 24/7, baseado na bioquímica individual de cada cliente. Respostas fundamentadas — não genéricas.</p>
-      </div>
-    </div>
-
-    <div class="pilares-grid fade-up">
-      <div class="pilar-item">
-        <div class="pilar-numeral">I</div>
-        <div>
-          <div class="pilar-name">Tempo Terapêutico</div>
-          <div class="pilar-tag">Consultas contínuas</div>
-        </div>
-      </div>
-      <div class="pilar-item">
-        <div class="pilar-numeral">II</div>
-        <div>
-          <div class="pilar-name">Relatório BioFuncional ODX</div>
-          <div class="pilar-tag">Incluído · valor €150</div>
-        </div>
-      </div>
-      <div class="pilar-item">
-        <div class="pilar-numeral">III</div>
-        <div>
-          <div class="pilar-name">Plano Terapêutico de Precisão</div>
-          <div class="pilar-tag">Escrito e actualizado</div>
-        </div>
-      </div>
-      <div class="pilar-item">
-        <div class="pilar-numeral">IV</div>
-        <div>
-          <div class="pilar-name">Consulta de MGF</div>
-          <div class="pilar-tag">2 consultas incluídas</div>
-        </div>
-      </div>
-      <div class="pilar-item">
-        <div class="pilar-numeral">V</div>
-        <div>
-          <div class="pilar-name">Testes Funcionais Profundos</div>
-          <div class="pilar-tag">Com desconto parceiro</div>
-        </div>
-      </div>
-      <div class="pilar-item">
-        <div class="pilar-numeral">VI</div>
-        <div>
-          <div class="pilar-name">Plano Alimentar Evolutivo</div>
-          <div class="pilar-tag">Revisto a cada fase</div>
-        </div>
-      </div>
-      <div class="pilar-item">
-        <div class="pilar-numeral">VII</div>
-        <div>
-          <div class="pilar-name">Suplementação Activa</div>
-          <div class="pilar-tag">Timing clínico</div>
-        </div>
-      </div>
-      <div class="pilar-item">
-        <div class="pilar-numeral">VIII</div>
-        <div>
-          <div class="pilar-name">Suporte ao Sistema Nervoso</div>
-          <div class="pilar-tag">Por indicação clínica</div>
-        </div>
-      </div>
-      <div class="pilar-item">
-        <div class="pilar-numeral">IX</div>
-        <div>
-          <div class="pilar-name">App Aletheia Virtual-First</div>
-          <div class="pilar-tag">Acesso contínuo</div>
-        </div>
-      </div>
-      <div class="pilar-item pilar-item--featured">
-        <div class="pilar-numeral">X</div>
-        <div>
-          <div class="pilar-name">Coordenação Total</div>
-          <div class="pilar-tag">O coração do programa</div>
-        </div>
+        <canvas id="orbital-canvas" width="560" height="560"></canvas>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════
-     OBJEÇÕES
-════════════════════════════════════════════════════════ -->
-<section id="objecoes" class="section">
-  <div class="container">
-    <div class="eyebrow fade-up">As três dúvidas</div>
-    <h2 class="section-title fade-up">
-      As perguntas que<br>já sabemos que tens
-    </h2>
-
-    <div class="objecoes-grid">
-      <div class="objecao-card fade-up">
-        <p class="objecao-q">"Será que o meu caso é grave o suficiente?"</p>
-        <p class="objecao-a">O Aletheia não é para emergências. É para as mulheres que funcionam — mas que já não se reconhecem. Se tens sintomas há mais de 6 meses e os exames "estão bem", o teu caso é exactamente o perfil deste programa.</p>
+<!-- 10 SERVIÇOS -->
+<section id="servicos">
+  <div class="section-inner">
+    <span class="eyebrow fade-up">O programa completo</span>
+    <h2 class="fade-up">Os 10 pilares do Aletheia</h2>
+    <div class="pilares-toc fade-up">
+      <div class="pilar-row">
+        <span class="pilar-roman">I</span>
+        <span class="pilar-name">Tempo Terapêutico</span>
+        <span class="pilar-tag">Consultas contínuas</span>
+        <span></span>
       </div>
-      <div class="objecao-card fade-up">
-        <p class="objecao-q">"€199/mês é para mim? Já gastei tanto."</p>
-        <p class="objecao-a">Inclui o relatório ODX (€150), duas consultas de MGF, plano terapêutico, suplementação direcionada e acompanhamento contínuo. O que custaria, separado e sem coordenação, seria 3× mais. A pergunta é: quanto custou o que não funcionou?</p>
+      <div class="pilar-row">
+        <span class="pilar-roman">II</span>
+        <span class="pilar-name">Relatório BioFuncional ODX</span>
+        <span class="pilar-tag">Incluído &middot; &euro;150 valor</span>
+        <span></span>
       </div>
-      <div class="objecao-card fade-up">
-        <p class="objecao-q">"Pode garantir que vai funcionar?"</p>
-        <p class="objecao-a">Não garantimos resultados — nenhum médico honesto o faz. Garantimos um processo rigoroso, baseado em evidência funcional, com reavaliação contínua. Se o teu corpo receber o que precisa, responde. O caso da Joana não foi excepção.</p>
+      <div class="pilar-row">
+        <span class="pilar-roman">III</span>
+        <span class="pilar-name">Plano Terapêutico</span>
+        <span class="pilar-tag">Escrito e actualizado</span>
+        <span></span>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════
-     TESTEMUNHOS
-════════════════════════════════════════════════════════ -->
-<section id="testimonials" class="section section--alt">
-  <div class="container">
-    <div class="eyebrow fade-up">Prova social</div>
-    <h2 class="section-title fade-up">
-      O que dizem<br>as clientes
-    </h2>
-
-    <div class="testimonials-grid">
-      <div class="testimonial-card fade-up">
-        <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-        <p class="testimonial-text">"Finalmente alguém que leu os meus exames como eu me sentia. Em três meses tive mais energia do que nos últimos dois anos."</p>
-        <div class="testimonial-author">Ana M. · 47 anos · Lisboa</div>
+      <div class="pilar-row">
+        <span class="pilar-roman">IV</span>
+        <span class="pilar-name">Consulta MGF</span>
+        <span class="pilar-tag">2 incluídas</span>
+        <span></span>
       </div>
-      <div class="testimonial-card fade-up">
-        <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-        <p class="testimonial-text">"O relatório ODX foi uma revelação. Percebi porque engordava sem comer mais. O plano fez sentido desde o primeiro dia."</p>
-        <div class="testimonial-author">Margarida F. · 53 anos · Porto</div>
+      <div class="pilar-row">
+        <span class="pilar-roman">V</span>
+        <span class="pilar-name">Testes Funcionais</span>
+        <span class="pilar-tag">Desconto parceiro</span>
+        <span></span>
       </div>
-      <div class="testimonial-card fade-up">
-        <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-        <p class="testimonial-text">"Acordei das 4h da manhã durante dois anos. Ao quarto mês já dormia 7 horas seguidas. Não acreditava que era possível."</p>
-        <div class="testimonial-author">Sofia C. · 44 anos · Braga</div>
+      <div class="pilar-row">
+        <span class="pilar-roman">VI</span>
+        <span class="pilar-name">Plano Alimentar</span>
+        <span class="pilar-tag">Evolutivo por fase</span>
+        <span></span>
       </div>
-    </div>
-
-    <div class="marquee-wrap">
-      <div class="marquee-track" id="marqueeTrack">
-        <span class="marquee-item">Sono reparador<span>α</span></span>
-        <span class="marquee-item">Cabeça clara<span>α</span></span>
-        <span class="marquee-item">Energia real<span>α</span></span>
-        <span class="marquee-item">Bioquímica compreendida<span>α</span></span>
-        <span class="marquee-item">Protocolo preciso<span>α</span></span>
-        <span class="marquee-item">Peso regulado<span>α</span></span>
-        <span class="marquee-item">Ciclo equilibrado<span>α</span></span>
-        <span class="marquee-item">Libido restaurada<span>α</span></span>
-        <span class="marquee-item">Tiróide optimizada<span>α</span></span>
-        <span class="marquee-item">Sono reparador<span>α</span></span>
-        <span class="marquee-item">Cabeça clara<span>α</span></span>
-        <span class="marquee-item">Energia real<span>α</span></span>
-        <span class="marquee-item">Bioquímica compreendida<span>α</span></span>
-        <span class="marquee-item">Protocolo preciso<span>α</span></span>
-        <span class="marquee-item">Peso regulado<span>α</span></span>
-        <span class="marquee-item">Ciclo equilibrado<span>α</span></span>
-        <span class="marquee-item">Libido restaurada<span>α</span></span>
-        <span class="marquee-item">Tiróide optimizada<span>α</span></span>
+      <div class="pilar-row">
+        <span class="pilar-roman">VII</span>
+        <span class="pilar-name">Suplementação Activa</span>
+        <span class="pilar-tag">Timing clínico</span>
+        <span></span>
+      </div>
+      <div class="pilar-row">
+        <span class="pilar-roman">VIII</span>
+        <span class="pilar-name">Sistema Nervoso</span>
+        <span class="pilar-tag">Por indicação</span>
+        <span></span>
+      </div>
+      <div class="pilar-row">
+        <span class="pilar-roman">IX</span>
+        <span class="pilar-name">App Aletheia</span>
+        <span class="pilar-tag">Virtual-first &middot; 24/7</span>
+        <span></span>
+      </div>
+      <div class="pilar-row pilar-featured">
+        <span class="pilar-roman">X</span>
+        <span class="pilar-name">Coordenação Total</span>
+        <span class="pilar-tag">O coração do programa</span>
+        <span class="maya-badge">MAYA &middot; IA Clínica</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════
-     CTA FINAL
-════════════════════════════════════════════════════════ -->
-<section id="cta" class="section section--dark">
-  <div class="container--narrow">
-    <div class="eyebrow fade-up" style="justify-content:center;">Se for a tua hora</div>
-    <span class="cta-alpha fade-up">α</span>
-    <h2 class="cta-title fade-up">
-      O teu corpo não está<br>a inventar.
-    </h2>
-    <p class="cta-sub fade-up">
-      Há uma explicação bioquímica para o que sentes.<br>
-      E há um caminho para o outro lado.
-    </p>
-    <div class="cta-actions fade-up">
-      <a href="mailto:info@catarinaveiga.com?subject=Aletheia%20—%20Quero%20fazer%20parte%20do%20programa" class="btn btn--gold">Quero fazer parte do programa →</a>
-      <a href="https://wa.me/351937046132" class="btn btn--ghost" style="color:rgba(248,246,241,.55); border-color:rgba(248,246,241,.2);" target="_blank" rel="noopener">Prefiro consulta avulsa</a>
+<!-- 11 OBJEÇÕES -->
+<section id="objecoes">
+  <div class="section-inner">
+    <span class="eyebrow eyebrow-light fade-up">Honestidade radical</span>
+    <h2 class="fade-up">As três dúvidas</h2>
+    <div class="objecao-item fade-up">
+      <p class="objecao-q">&ldquo;Já fiz tantos exames. Estou farta de procurar resposta.&rdquo;</p>
+      <p class="objecao-a">Percebo. A maioria dos exames convencionais estão correctos &mdash; mas interpretados pelo intervalo errado. A diferença entre &ldquo;normal de laboratório&rdquo; e &ldquo;óptimo funcional&rdquo; pode ser a diferença entre continuar exausta e voltar a ter energia. O que vamos fazer não é mais do mesmo.</p>
     </div>
-    <p class="cta-fine fade-up">€199 / mês · tudo incluído · sem compromisso mínimo</p>
+    <div class="objecao-item fade-up">
+      <p class="objecao-q">&ldquo;&euro;199 por mês é muito para mim agora.&rdquo;</p>
+      <p class="objecao-a">É um investimento real e compreendo que pese. Mas considera o custo do que já gastaste em consultas avulsas, suplementos sem protocolo, exames repetidos. O Aletheia é um sistema contínuo, não uma consulta isolada. E inclui o relatório ODX (&euro;150), duas consultas MGF e acompanhamento mensal &mdash; tudo coordenado.</p>
+    </div>
+    <div class="objecao-item fade-up">
+      <p class="objecao-q">&ldquo;Tenho médico. Para que preciso de outro?&rdquo;</p>
+      <p class="objecao-a">O Aletheia não substitui o teu médico &mdash; trabalha com ele. A coordenação total inclui comunicação com o teu MGF e especialistas. O que proponho é uma camada de profundidade que a medicina convencional raramente tem tempo para oferecer: interpretar padrões, cruzar dados, acompanhar a progressão.</p>
+    </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════
-     FOOTER
-════════════════════════════════════════════════════════ -->
-<footer style="position:relative;">
-  <div class="footer-grid">
-    <div>
-      <div class="footer-brand"><span>α</span>Aletheia</div>
-      <p class="footer-tagline">"Aquilo que estava escondido<br>e precisa de ser visto."</p>
-    </div>
-    <div>
-      <div class="footer-heading">Programa</div>
-      <ul class="footer-links">
-        <li><a href="#problema">O Problema</a></li>
-        <li><a href="#caso">Caso Real</a></li>
-        <li><a href="#incluido">O Método</a></li>
-        <li><a href="#servicos">Os 10 Pilares</a></li>
-        <li><a href="#objecoes">Dúvidas</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-heading">Contacto</div>
-      <ul class="footer-links">
-        <li><a href="mailto:info@catarinaveiga.com">info@catarinaveiga.com</a></li>
-        <li><a href="https://wa.me/351937046132">+351 937 046 132</a></li>
-        <li><a href="https://catarina1979.github.io/quiz/" target="_blank" rel="noopener">Quiz gratuito</a></li>
-        <li><a href="https://catarinaveiga-precision-health.github.io/aletheia-health-program/dashboard.html">Dashboard</a></li>
-      </ul>
+<!-- 12 TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-inner">
+    <span class="eyebrow fade-up">Vozes reais</span>
+    <h2 class="fade-up">O que dizem as mulheres do programa</h2>
+    <div class="testi-grid">
+      <div class="testi-card fade-up">
+        <span class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <p class="testi-quote">&ldquo;Pela primeira vez em anos alguém me explicou o porquê. Não só o quê. Isso muda tudo.&rdquo;</p>
+        <span class="testi-name">Ana L. &middot; 47 anos &middot; Lisboa</span>
+      </div>
+      <div class="testi-card fade-up">
+        <span class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <p class="testi-quote">&ldquo;Três médicos disseram que estava tudo bem. A Catarina encontrou o problema em duas semanas.&rdquo;</p>
+        <span class="testi-name">Marta F. &middot; 53 anos &middot; Porto</span>
+      </div>
+      <div class="testi-card fade-up">
+        <span class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <p class="testi-quote">&ldquo;Voltei a dormir. Voltei a pensar com clareza. Voltei a ser eu. Não sei como agradecer.&rdquo;</p>
+        <span class="testi-name">Sofia C. &middot; 44 anos &middot; Cascais</span>
+      </div>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2026 Catarina Veiga · Medicina Funcional Integrativa</span>
-    <span style="opacity:.4;">Aletheia Health Precision Program</span>
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span class="marquee-item">&ldquo;Finalmente percebo o meu próprio corpo&rdquo;</span>
+      <span class="marquee-item">&ldquo;A fadiga crónica que tinha não era normal &mdash; era tratável&rdquo;</span>
+      <span class="marquee-item">&ldquo;Em 3 meses perdi 5kg sem dieta. Só com equilíbrio hormonal&rdquo;</span>
+      <span class="marquee-item">&ldquo;O sono mudou tudo. A Catarina foi a única que perguntou&rdquo;</span>
+      <span class="marquee-item">&ldquo;Cabelo mais forte, energia real, cabeça clara&rdquo;</span>
+      <span class="marquee-item">&ldquo;Medicina como devia ser &mdash; personalizada, profunda, contínua&rdquo;</span>
+      <span class="marquee-item">&ldquo;Finalmente percebo o meu próprio corpo&rdquo;</span>
+      <span class="marquee-item">&ldquo;A fadiga crónica que tinha não era normal &mdash; era tratável&rdquo;</span>
+      <span class="marquee-item">&ldquo;Em 3 meses perdi 5kg sem dieta. Só com equilíbrio hormonal&rdquo;</span>
+      <span class="marquee-item">&ldquo;O sono mudou tudo. A Catarina foi a única que perguntou&rdquo;</span>
+      <span class="marquee-item">&ldquo;Cabelo mais forte, energia real, cabeça clara&rdquo;</span>
+      <span class="marquee-item">&ldquo;Medicina como devia ser &mdash; personalizada, profunda, contínua&rdquo;</span>
+    </div>
   </div>
-  <div class="footer-alpha-deco">α</div>
+</section>
+
+<!-- 13 CTA FINAL -->
+<section id="cta-final">
+  <div class="section-inner">
+    <span class="cta-final-alpha fade-up">&alpha;</span>
+    <h2 class="cta-final-heading fade-up">O teu corpo não está a inventar.</h2>
+    <span class="cta-final-tagline fade-up">Está a pedir que alguém o leia com atenção.</span>
+    <div class="cta-final-btns fade-up">
+      <a href="mailto:info@catarinaveiga.com?subject=Aletheia%20%E2%80%94%20Quero%20fazer%20parte%20do%20programa" class="btn-gold">Falar com a Dra. Catarina &rarr;</a>
+      <a href="https://wa.me/351937046132" class="btn-outline-white">WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="footer-logo">Aletheia</a>
+        <p>Programa de Saúde de Precisão<br>Dra. Catarina Veiga<br>Medicina Funcional</p>
+      </div>
+      <div class="footer-col">
+        <h5>Programa</h5>
+        <ul>
+          <li><a href="#outcomes">Resultados</a></li>
+          <li><a href="#protocol">Protocolo</a></li>
+          <li><a href="#servicos">Os 10 Pilares</a></li>
+          <li><a href="#camadas">Metodologia</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contacto</h5>
+        <ul>
+          <li><a href="mailto:info@catarinaveiga.com">info@catarinaveiga.com</a></li>
+          <li><a href="https://wa.me/351937046132">+351 937 046 132</a></li>
+          <li><a href="mailto:info@catarinaveiga.com?subject=Aletheia%20%E2%80%94%20Lista%20de%20espera">Lista de espera</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#">Política de Privacidade</a></li>
+          <li><a href="#">Termos de Serviço</a></li>
+          <li><a href="#">Livro de Reclamações</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Dra. Catarina Veiga &middot; Todos os direitos reservados</p>
+      <p>Cédula profissional OM &mdash; Portugal</p>
+    </div>
+  </div>
 </footer>
 
-<!-- ═══════════════════════════════════════════════════════
-     JAVASCRIPT
-════════════════════════════════════════════════════════ -->
+<!-- POPUP -->
+<div id="popup-overlay">
+  <div id="popup-box">
+    <button id="popup-close" aria-label="Fechar">&times;</button>
+    <span class="popup-alpha">&alpha;</span>
+    <h3>Antes de saíres &mdash;</h3>
+    <p>O programa Aletheia abre vagas por convite. Deixa o teu contacto e serei eu a falar contigo quando houver espaço.</p>
+    <div class="popup-btns">
+      <a href="mailto:info@catarinaveiga.com?subject=Aletheia%20%E2%80%94%20Lista%20de%20espera" class="btn-gold">Entrar na lista de espera</a>
+      <button class="popup-dismiss" onclick="closePopup()">Não, obrigada</button>
+    </div>
+  </div>
+</div>
+
 <script>
-(function() {
-  'use strict';
+(function(){
+'use strict';
 
-  /* ── CUSTOM CURSOR ──────────────────────────────────── */
-  const dot  = document.getElementById('cursorDot');
-  const ring = document.getElementById('cursorRing');
-  let mx=0, my=0, rx=0, ry=0;
-  const isMobile = () => window.matchMedia('(pointer:coarse)').matches;
-
-  if (!isMobile()) {
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      dot.style.left  = mx + 'px';
-      dot.style.top   = my + 'px';
-    });
-    const animRing = () => {
-      rx += (mx - rx) * .14;
-      ry += (my - ry) * .14;
-      ring.style.left = rx + 'px';
-      ring.style.top  = ry + 'px';
-      requestAnimationFrame(animRing);
-    };
-    animRing();
-    document.querySelectorAll('a,button').forEach(el => {
-      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-link'));
-      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-link'));
-    });
-  } else {
-    dot.style.display = ring.style.display = 'none';
+/* 1. fitText */
+function fitText(el){
+  var W=el.parentElement.offsetWidth;
+  var lo=20,hi=400,mid;
+  el.style.letterSpacing='0.06em';
+  for(var i=0;i<20;i++){
+    mid=(lo+hi)/2;
+    el.style.fontSize=mid+'px';
+    el.scrollWidth<=W?lo=mid:hi=mid;
   }
+  el.style.fontSize=lo+'px';
+}
+var wordmark=document.getElementById('hero-wordmark');
+if(wordmark){
+  fitText(wordmark);
+  var ro=new ResizeObserver(function(){fitText(wordmark);});
+  ro.observe(wordmark.parentElement);
+}
 
-  /* ── SCROLL PROGRESS ────────────────────────────────── */
-  const bar = document.getElementById('progress-bar');
-  const updateProgress = () => {
-    const h = document.documentElement;
-    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-    bar.style.width = pct + '%';
-  };
-  window.addEventListener('scroll', updateProgress, { passive:true });
-
-  /* ── ANNOUNCE BAR ───────────────────────────────────── */
-  const announceBar   = document.getElementById('announceBar');
-  const announceClose = document.getElementById('announceClose');
-  let announceHidden  = false;
-  announceClose.addEventListener('click', () => {
-    announceBar.classList.add('is-hidden');
-    announceHidden = true;
-    document.body.style.setProperty('--announce-offset','0px');
-    mainNav.style.top = '0';
-  });
-
-  /* ── NAV ────────────────────────────────────────────── */
-  const mainNav = document.getElementById('mainNav');
-  const ANNOUNCE_H = 36;
-  window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY > 60;
-    mainNav.classList.toggle('scrolled', scrolled);
-    if (!announceHidden) {
-      const offset = Math.max(0, ANNOUNCE_H - window.scrollY);
-      mainNav.style.top = offset + 'px';
-      if (window.scrollY > ANNOUNCE_H + 20) {
-        announceBar.classList.add('is-hidden');
-      } else {
-        announceBar.classList.remove('is-hidden');
-      }
-    }
-  }, { passive:true });
-
-  /* ── HAMBURGER ──────────────────────────────────────── */
-  const hamburger  = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    mobileMenu.classList.toggle('open');
-    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-  });
-  mobileMenu.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      hamburger.classList.remove('open');
-      mobileMenu.classList.remove('open');
-      document.body.style.overflow = '';
+/* 2. Hero orb canvas */
+var hc=document.getElementById('hero-canvas');
+if(hc){
+  var ctx=hc.getContext('2d');
+  var W,H;
+  function resizeHero(){
+    W=hc.width=hc.offsetWidth;
+    H=hc.height=hc.offsetHeight;
+  }
+  resizeHero();
+  window.addEventListener('resize',resizeHero);
+  var orbs=[];
+  for(var i=0;i<8;i++){
+    orbs.push({
+      x:Math.random()*1400,
+      y:Math.random()*900,
+      r:180+Math.random()*220,
+      vx:(Math.random()-.5)*.25,
+      vy:(Math.random()-.5)*.25,
+      hue:i%2===0?'sage':'gold',
+      op:.03+Math.random()*.03
     });
-  });
-
-  /* ── FADE-UP OBSERVER ───────────────────────────────── */
-  const fadeEls = document.querySelectorAll('.fade-up');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  fadeEls.forEach(el => observer.observe(el));
-
-  /* ── COUNTERS ───────────────────────────────────────── */
-  const easeOut = t => 1 - Math.pow(1 - t, 3);
-  const animateCounter = (el, target, isDecimal, duration=1600) => {
-    let start = null;
-    const tick = ts => {
-      if (!start) start = ts;
-      const progress = Math.min((ts - start) / duration, 1);
-      const val = target * easeOut(progress);
-      el.textContent = isDecimal ? val.toFixed(1) : Math.round(val).toString();
-      if (progress < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  };
-
-  const counterObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const el = e.target;
-        if (el.dataset.count)        animateCounter(el, +el.dataset.count, false);
-        if (el.dataset.countDecimal) animateCounter(el, +el.dataset.countDecimal, true);
-        counterObs.unobserve(el);
-      }
-    });
-  }, { threshold:0.5 });
-  document.querySelectorAll('[data-count],[data-count-decimal]').forEach(el => counterObs.observe(el));
-
-  /* ── SMOOTH SCROLL ANCHORS ──────────────────────────── */
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior:'smooth', block:'start' });
-      }
-    });
-  });
-
-  /* ── ORBITAL ────────────────────────────────────────── */
-  const PILARES = [
-    { name:'Tempo Terapêutico',        tag:'Consultas contínuas' },
-    { name:'Relatório BioFuncional',   tag:'ODX · €150 incluído' },
-    { name:'Plano Terapêutico',        tag:'Escrito e actualizado' },
-    { name:'Consulta MGF',             tag:'2 incluídas' },
-    { name:'Testes Funcionais',        tag:'Com desconto parceiro' },
-    { name:'Plano Alimentar',          tag:'Evolutivo por fase' },
-    { name:'Suplementação Activa',     tag:'Timing clínico' },
-    { name:'Sistema Nervoso',          tag:'Por indicação clínica' },
-    { name:'App Aletheia',             tag:'Virtual-first 24/7' },
-    { name:'Coordenação Total',        tag:'O coração do programa' },
-  ];
-
-  const canvas = document.getElementById('orbital-canvas');
-  if (!canvas) return;
-  const ctx    = canvas.getContext('2d');
-  const CW     = canvas.width;
-  const CH     = canvas.height;
-  const CX     = CW / 2;
-  const CY     = CH / 2;
-  const R_ORB  = CW * 0.36;
-  const N      = PILARES.length;
-  const NODE_R = 22;
-  const SPEED  = (6 * Math.PI / 180) / 60; // 6°/s in radians/frame @60fps
-
-  let angle    = 0;
-  let paused   = false;
-  let selected = -1;
-  let lastTime = null;
-
-  const getNodePositions = (baseAngle) => {
-    return PILARES.map((_, i) => {
-      const a = baseAngle + (i / N) * Math.PI * 2;
-      return {
-        x: CX + Math.cos(a) * R_ORB,
-        y: CY + Math.sin(a) * R_ORB,
-        a
-      };
-    });
-  };
-
-  const drawOrbit = (ts) => {
-    if (lastTime === null) lastTime = ts;
-    const dt = ts - lastTime;
-    lastTime = ts;
-    if (!paused) angle += SPEED * (dt / (1000/60));
-
-    ctx.clearRect(0, 0, CW, CH);
-
-    // Orbit ring
-    ctx.beginPath();
-    ctx.arc(CX, CY, R_ORB, 0, Math.PI*2);
-    ctx.strokeStyle = 'rgba(248,246,241,0.1)';
-    ctx.lineWidth = 1;
-    ctx.stroke();
-
-    // Centre glow
-    const grad = ctx.createRadialGradient(CX,CY,0,CX,CY,54);
-    grad.addColorStop(0,  'oklch(80% 0.06 75)');
-    grad.addColorStop(0.5,'oklch(72% 0.08 75)');
-    grad.addColorStop(1,  'oklch(52% 0.04 160 / 0)');
-    ctx.beginPath();
-    ctx.arc(CX, CY, 54, 0, Math.PI*2);
-    ctx.fillStyle = grad;
-    ctx.fill();
-
-    // Centre α
-    ctx.font = 'italic 300 28px Spectral, Georgia, serif';
-    ctx.fillStyle = 'rgba(42,41,38,0.9)';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('α', CX, CY);
-
-    // Nodes
-    const nodes = getNodePositions(angle);
-    nodes.forEach((n, i) => {
-      const isSelected = selected === i;
-      const r = isSelected ? NODE_R * 1.5 : NODE_R;
-
-      // Spoke
+  }
+  function drawOrbs(){
+    ctx.clearRect(0,0,W,H);
+    for(var o=0;o<orbs.length;o++){
+      var orb=orbs[o];
+      orb.x+=orb.vx;orb.y+=orb.vy;
+      if(orb.x<-orb.r)orb.x=W+orb.r;
+      if(orb.x>W+orb.r)orb.x=-orb.r;
+      if(orb.y<-orb.r)orb.y=H+orb.r;
+      if(orb.y>H+orb.r)orb.y=-orb.r;
+      var c=orb.hue==='sage'?'rgba(94,122,108,':'rgba(197,164,106,';
+      var g=ctx.createRadialGradient(orb.x,orb.y,0,orb.x,orb.y,orb.r);
+      g.addColorStop(0,c+orb.op+')');
+      g.addColorStop(.5,c+(orb.op*.5)+')');
+      g.addColorStop(1,'rgba(0,0,0,0)');
       ctx.beginPath();
-      ctx.moveTo(CX, CY);
-      ctx.lineTo(n.x, n.y);
-      ctx.strokeStyle = isSelected ? 'rgba(197,164,106,0.3)' : 'rgba(248,246,241,0.06)';
-      ctx.lineWidth = isSelected ? 1 : 0.5;
-      ctx.stroke();
-
-      // Node circle
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, r, 0, Math.PI*2);
-      ctx.fillStyle   = isSelected ? '#F8F6F1' : 'oklch(38% 0.04 160)';
+      ctx.arc(orb.x,orb.y,orb.r,0,Math.PI*2);
+      ctx.fillStyle=g;
       ctx.fill();
-      ctx.strokeStyle = isSelected ? 'rgba(197,164,106,0.7)' : 'rgba(248,246,241,0.45)';
-      ctx.lineWidth   = 1;
-      ctx.stroke();
+    }
+    requestAnimationFrame(drawOrbs);
+  }
+  requestAnimationFrame(drawOrbs);
+}
 
-      // Node label
-      const num = ['I','II','III','IV','V','VI','VII','VIII','IX','X'][i];
-      ctx.font = `italic 300 ${isSelected ? 14 : 12}px Spectral, Georgia, serif`;
-      ctx.fillStyle = isSelected ? '#2A2926' : 'rgba(248,246,241,0.8)';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(num, n.x, n.y);
-    });
+/* 3. Frosted nav + announce bar */
+var nav=document.getElementById('nav');
+var ab=document.getElementById('announce-bar');
+var abHidden=false;
+window.addEventListener('scroll',function(){
+  var y=window.scrollY;
+  if(y>60){
+    nav.classList.add('frosted');
+    if(!abHidden){ab.classList.add('hidden');abHidden=true;}
+  } else {
+    nav.classList.remove('frosted');
+    if(abHidden){ab.classList.remove('hidden');abHidden=false;}
+  }
+},{passive:true});
 
-    requestAnimationFrame(drawOrbit);
-  };
-  requestAnimationFrame(drawOrbit);
+/* 4. Hamburger */
+var ham=document.getElementById('hamburger');
+var mm=document.getElementById('mobile-menu');
+ham.addEventListener('click',function(){
+  ham.classList.toggle('open');
+  mm.classList.toggle('open');
+});
+window.closeMobileMenu=function(){
+  ham.classList.remove('open');
+  mm.classList.remove('open');
+};
 
-  // Click handler
-  canvas.addEventListener('click', e => {
-    const rect = canvas.getBoundingClientRect();
-    const sx   = (e.clientX - rect.left) * (CW / rect.width);
-    const sy   = (e.clientY - rect.top)  * (CH / rect.height);
-    const nodes = getNodePositions(angle);
-    let hit = -1;
-    nodes.forEach((n, i) => {
-      const dist = Math.hypot(sx - n.x, sy - n.y);
-      if (dist < NODE_R * 2) hit = i;
-    });
-    if (hit >= 0) {
-      paused   = true;
-      selected = hit;
-      const info = document.getElementById('orbital-info');
-      document.getElementById('orbital-info__title').textContent = PILARES[hit].name;
-      document.getElementById('orbital-info__tag').textContent   = PILARES[hit].tag;
-      info.classList.add('visible');
-    } else {
-      paused   = false;
-      selected = -1;
-      document.getElementById('orbital-info').classList.remove('visible');
+/* 5. Fade-up */
+var fadeObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      fadeObs.unobserve(e.target);
     }
   });
+},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade-up').forEach(function(el){fadeObs.observe(el);});
 
-  /* ── POPUP ──────────────────────────────────────────── */
-  const popup      = document.getElementById('popup');
-  const popupClose = document.getElementById('popupClose');
-  const popupDismiss = document.getElementById('popupDismiss');
-  let popupShown   = false;
-
-  const showPopup = () => {
-    if (!popupShown) {
-      popupShown = true;
-      popup.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-  };
-  const hidePopup = () => {
-    popup.classList.remove('open');
-    document.body.style.overflow = '';
-  };
-
-  // Trigger at 85% scroll
-  window.addEventListener('scroll', () => {
-    const h = document.documentElement;
-    const pct = h.scrollTop / (h.scrollHeight - h.clientHeight);
-    if (pct > 0.85) showPopup();
-  }, { passive:true });
-
-  // Trigger after 120s
-  setTimeout(showPopup, 120000);
-
-  popupClose.addEventListener('click', hidePopup);
-  popupDismiss.addEventListener('click', hidePopup);
-  popup.addEventListener('click', e => {
-    if (e.target === popup) hidePopup();
+/* 6. Counter */
+function easeOut(t){return 1-Math.pow(1-t,3);}
+function animCounter(el){
+  var target=parseInt(el.getAttribute('data-count'),10);
+  var dur=1600;var start=performance.now();
+  function step(now){
+    var p=Math.min((now-start)/dur,1);
+    el.textContent=Math.floor(easeOut(p)*target);
+    if(p<1)requestAnimationFrame(step);
+    else el.textContent=target+(target>=500?'+':'');
+  }
+  requestAnimationFrame(step);
+}
+var cntObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){animCounter(e.target);cntObs.unobserve(e.target);}
   });
+},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(function(el){cntObs.observe(el);});
+
+/* 7. Cascata word-reveal */
+var ct=document.getElementById('cascata-text');
+if(ct){
+  var raw=ct.innerHTML;
+  var words=raw.split(/\s+/);
+  ct.innerHTML=words.map(function(w,i){
+    return '<span class="word" style="transition-delay:'+( i*0.055)+'s">'+w+'</span>';
+  }).join(' ');
+  var cascObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('revealed');cascObs.unobserve(e.target);}
+    });
+  },{threshold:.1});
+  cascObs.observe(ct);
+}
+
+/* 8. Orbital canvas */
+var oc=document.getElementById('orbital-canvas');
+var orbInfo=document.getElementById('orbital-info');
+if(oc){
+  var octx=oc.getContext('2d');
+  var CX=280,CY=280;
+  var angle=0,paused=false,lastTime=null;
+  var ROT=6*Math.PI/180;
+  var nodes=[
+    {label:'Tiróide',r:80,sa:0},
+    {label:'Cortisol',r:130,sa:Math.PI/5},
+    {label:'Progesterona',r:175,sa:2*Math.PI/5},
+    {label:'Estrogénio',r:175,sa:4*Math.PI/5},
+    {label:'Insulina',r:130,sa:6*Math.PI/5},
+    {label:'DHEA',r:80,sa:8*Math.PI/5},
+    {label:'Ferritina',r:220,sa:Math.PI/10},
+    {label:'Vitamina D',r:220,sa:3*Math.PI/10},
+    {label:'Sono',r:220,sa:7*Math.PI/10},
+    {label:'Intestino',r:220,sa:9*Math.PI/10}
+  ];
+  function nodePos(n,a){
+    return{x:CX+n.r*Math.cos(n.sa+a),y:CY+n.r*Math.sin(n.sa+a)};
+  }
+  function drawOrb(ts){
+    if(!paused){
+      if(lastTime!==null){angle+=ROT*(ts-lastTime)/1000;}
+      lastTime=ts;
+    }
+    octx.clearRect(0,0,560,560);
+    [80,130,175,220].forEach(function(r){
+      octx.beginPath();octx.arc(CX,CY,r,0,Math.PI*2);
+      octx.strokeStyle='rgba(255,255,255,.06)';octx.lineWidth=1;octx.stroke();
+    });
+    for(var i=0;i<nodes.length;i++){
+      for(var j=i+1;j<nodes.length;j++){
+        if(Math.abs(nodes[i].r-nodes[j].r)<=95){
+          var p1=nodePos(nodes[i],angle),p2=nodePos(nodes[j],angle);
+          octx.beginPath();octx.moveTo(p1.x,p1.y);octx.lineTo(p2.x,p2.y);
+          octx.strokeStyle='rgba(255,255,255,.04)';octx.lineWidth=1;octx.stroke();
+        }
+      }
+    }
+    octx.beginPath();octx.arc(CX,CY,4,0,Math.PI*2);
+    octx.fillStyle='rgba(197,164,106,.7)';octx.fill();
+    nodes.forEach(function(n,idx){
+      var pos=nodePos(n,angle);
+      var dr=n.r<100?5:4;
+      octx.beginPath();octx.arc(pos.x,pos.y,dr,0,Math.PI*2);
+      octx.fillStyle=idx%2===0?'rgba(94,122,108,.85)':'rgba(197,164,106,.7)';
+      octx.fill();
+      octx.font='11px Epilogue,sans-serif';
+      octx.fillStyle='rgba(255,255,255,.5)';
+      octx.textAlign=pos.x>CX?'left':'right';
+      var ox=pos.x>CX?dr+6:-(dr+6);
+      octx.fillText(n.label,pos.x+ox,pos.y+4);
+    });
+    requestAnimationFrame(drawOrb);
+  }
+  requestAnimationFrame(drawOrb);
+  oc.addEventListener('click',function(){
+    paused=!paused;
+    if(paused){lastTime=null;orbInfo.textContent='Pausado \u00B7 clica para retomar';}
+    else orbInfo.textContent='';
+  });
+}
+
+/* 9. Popup */
+var pop=document.getElementById('popup-overlay');
+var popShown=false;
+function showPopup(){if(popShown)return;popShown=true;pop.classList.add('open');}
+window.closePopup=function(){pop.classList.remove('open');};
+document.getElementById('popup-close').addEventListener('click',closePopup);
+pop.addEventListener('click',function(e){if(e.target===pop)closePopup();});
+window.addEventListener('scroll',function onS(){
+  var s=window.scrollY/(document.body.scrollHeight-window.innerHeight);
+  if(s>=.85){showPopup();window.removeEventListener('scroll',onS);}
+},{passive:true});
+setTimeout(showPopup,120000);
 
 })();
 </script>
